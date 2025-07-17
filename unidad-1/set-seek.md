@@ -66,6 +66,50 @@ class Walker {
 
 ### Actividad 4
 
+- en una distribucion uniforme todos los numeros posibles tienen la misma probabilidad de ocurrir, mientras que en una distribucion no uniforme habran ciertos numeros que tendran mas o menos posibilidad de ocurrir.}
 
+```
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+let walker;
+
+function setup() {
+  createCanvas(640, 240);
+  walker = new Walker();
+  background(200);
+}
+
+function draw() {
+  walker.step();
+  walker.show();
+}
+
+class Walker {
+  constructor() {
+    this.x = width / 2;
+    this.y = height / 2;
+  }
+
+  show() {
+    stroke(0);
+    point(this.x, this.y);
+  }
+
+  step() {
+    const choice = floor(randomGaussian(1,4));
+    if (choice == 0) {
+      this.y--;
+    } else if (choice == 1) {
+      this.y++;
+    } else if (choice == 2) {
+      this.x--;
+    } else {
+      this.x++;
+    }
+  }
+}
+```
 
 
