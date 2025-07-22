@@ -126,12 +126,77 @@ function draw() {
   square(x, y, 10);
 }
 ```
-[link al sketch](https://editor.p5js.org/luly903/sketches/i5mQtEm6e)
+[link al codigo del sketch](https://editor.p5js.org/luly903/sketches/i5mQtEm6e)
 
 captura del sketch:
 
 <img width="657" height="336" alt="image" src="https://github.com/user-attachments/assets/62c76e2d-0b02-4487-884a-2c5525b4b1e0" />
 
 
+### Actividad 6
 
+Para esta actividad hice 2 codigos
 
+codigo 1:
+```
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+// codigo modififcado por Juliana Monroy / luly903
+
+function setup() {
+  createCanvas(640, 400);
+  background(230);
+}
+
+function draw() {
+  let x = 0;
+  let y = 120;
+  let r = random(1);
+  if (r < 0.01) {
+   x= 400;
+  } else {
+   x = random(300);
+  }
+  noStroke();
+  fill(0, 10);
+  circle(x, y, 16);
+}
+```
+[link al codigo del sketch](https://editor.p5js.org/natureofcode/sketches/Yk_eSiNOR)
+
+captura del sketch:
+
+<img width="818" height="523" alt="image" src="https://github.com/user-attachments/assets/a1ae6c37-bef3-43a3-a46c-85f3ea3b66e4" />
+
+codigo 2:
+```
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+//codigo modificado por Juliana Monroy / luly903
+
+function setup() {
+  createCanvas(640, 400);
+  background(230);
+}
+
+function draw() {
+  let x = random(640);
+  let y = 120;
+  let r = random(1);
+  if (r < 0.01) {
+   fill(random(255),random(255),random(255))
+  } else {
+   fill(0,10);
+  }
+  noStroke();
+  
+  circle(x, y, 30);
+}
+```
+[link al codigo del sketch](https://editor.p5js.org/luly903/sketches/KMchQgZH-)
+
+captura del sketch:
+
+<img width="831" height="521" alt="image" src="https://github.com/user-attachments/assets/f75098e9-3d64-40d8-bc70-ebc185ac2f46" />
