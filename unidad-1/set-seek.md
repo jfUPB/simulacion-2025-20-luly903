@@ -111,5 +111,27 @@ class Walker {
   }
 }
 ```
+### Actividad 5
+```
+function setup() {
+  createCanvas(500, 250);
+   background(230);
+}
+
+function draw() {
+   let x = randomGaussian(240, 10);
+  let y = randomGaussian(120, 30);
+  noStroke();
+  fill(0, 20);
+  square(x, y, 10);
+}
+```
+[link al sketch](https://editor.p5js.org/luly903/sketches/i5mQtEm6e)
+
+captura del sketch:
+
+<img width="657" height="336" alt="image" src="https://github.com/user-attachments/assets/62c76e2d-0b02-4487-884a-2c5525b4b1e0" />
+
+
 
 
