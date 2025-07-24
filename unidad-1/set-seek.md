@@ -2,6 +2,7 @@
 
 ## 🔎 Fase: Set + Seek
 
+
 ### Actividad 01
 
 - la aleatoriedad permite que el arte generativo sea espontaneo, dinamico y único en cada experiencia.
@@ -200,3 +201,4 @@ function draw() {
 captura del sketch:
 
 <img width="831" height="521" alt="image" src="https://github.com/user-attachments/assets/f75098e9-3d64-40d8-bc70-ebc185ac2f46" />
+
