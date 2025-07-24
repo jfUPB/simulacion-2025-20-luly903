@@ -21,7 +21,8 @@ Para interactuar con el sketch estan las siguientes opciones:
 
 
 coidgo del sketch:
-```
+
+``` js
 let x = 0;
 let y = 200;
 let size = 10;
