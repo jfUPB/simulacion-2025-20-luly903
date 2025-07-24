@@ -39,7 +39,25 @@
 - no haria que el trazo siempre estuviera desplazandose hacia adelantes, sino que mas bien haria que funcionara similar a la serpiente de los minijuegos en el que siempre se esta moviendo pero tu puedes elegir la direccion en la que va, y cambiar por ende los controles para subir o bajar la velocidad del trazo.
 
 
+### Actividad 10
+*compañero: Daniel Betancourt*
+- 5/5, la obra generativa hace uso de 3 elementos de aleatoriedad (ruido de perlin, randomGaussian y random), tiene descripcion, el codigo del sketch, captura y link al mismo, la obra es entretenida de observar e interactuar, algo que me pareceria interesante seria ver como cambiaria la obra si los puntos se desplazaran de forma continua al mantener oprimido las flechas derecha/izquierda, pero me gusta el efecto que da cuando solo se presionan varias veces, me recuerda aun copo de nieve o una flor cuando la hago girar a la izquierda o a la derecha.
 
+
+ ### Actividad 11
+1. ¿Qué actividad, ejemplo o explicación de esta unidad te resultó más reveladora o útil para tu aprendizaje? ¿Qué deberíamos mantener sí o sí?
+- Me gusto la actividad del salto de levy, a pesar de que no la aplique en la actividad 8, si realice 2 ejemplos del mismo porque me parecia chevere de aplicar, algo que podrian mantener es la forma en la que se realizan actividades pequeñas y enfocadas para familiarizarse con los conceptos nuevos que introducen en la unidad.
+   
+2. ¿Hubo alguna actividad o concepto que te pareció redundante, confuso o menos útil? ¿Hay algo que eliminarías o cambiarías por completo?
+- el ruido de perlin, aunque esto fue mas que nada en mi parte ya que tuve muchos problemas aplicandolo en practica, por ahora no cambiaria nada.
+
+3. ¿Qué te faltó en esta unidad? ¿Quizás más ejemplos de artistas, más desafíos técnicos, más teoría? ¿Qué idea tienes para hacerla mejor?
+- quizas mas desafios tecnicos para comprender bien como aplicar lo aprendido en diferentes contextos, se podrian hacer mas desafios tecnicos, no en mayor dificultad, p
+
+4. Balance Teoría-Práctica: ¿Cómo sentiste el equilibrio entre analizar los ejemplos del texto guía y ponerte a programar tus propios sketches? Explica tu respuesta.
+
+
+5. Comentario Adicional: ¿Hay algo más que quieras compartir sobre tu experiencia en esta unidad?
 
 
 
