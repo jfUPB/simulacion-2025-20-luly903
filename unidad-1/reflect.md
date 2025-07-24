@@ -54,11 +54,11 @@
 3. ¿Qué te faltó en esta unidad? ¿Quizás más ejemplos de artistas, más desafíos técnicos, más teoría? ¿Qué idea tienes para hacerla mejor?
 - quizas mas desafios tecnicos para comprender bien como aplicar lo aprendido en diferentes contextos, se podrian hacer mas desafios tecnicos, no en mayor dificultad, p
 
-4. Balance Teoría-Práctica: ¿Cómo sentiste el equilibrio entre analizar los ejemplos del texto guía y ponerte a programar tus propios sketches? Explica tu respuesta.
+4. ¿Cómo sentiste el equilibrio entre analizar los ejemplos del texto guía y ponerte a programar tus propios sketches? Explica tu respuesta.
+- Analizar los ejemplos de la guia de hecho me ayudo bastante en cuanto a hacer mi propio codigo ya que me ayudaba a entender mejor como se usaba y en que casos era mejor aplicar que tipo de aleatoriedad.
 
-
-5. Comentario Adicional: ¿Hay algo más que quieras compartir sobre tu experiencia en esta unidad?
-
+5. ¿Hay algo más que quieras compartir sobre tu experiencia en esta unidad?
+- nada, todo bien esta unidad.
 
 
 
