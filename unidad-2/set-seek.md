@@ -66,13 +66,13 @@ class Walker {
  ### Actividad 03
 
 **¿Qué resultado esperas obtener en el programa anterior?**
--
+- Esperaba que apareciera un punto en las coordenadas del vector posicion.
 
 **¿Qué resultado obtuviste?**
-
+- No aparecio nada
 
 **Recuerda los conceptos de paso por valor y paso por referencia en programación. Muestra ejemplos de este concepto en javascript.**
--
+- 
 
 **¿Qué tipo de paso se está realizando en el código?**
 -
