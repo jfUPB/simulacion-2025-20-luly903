@@ -63,14 +63,24 @@ class Walker {
 }
 ```
 
+ ### Actividad 03
+
+**¿Qué resultado esperas obtener en el programa anterior?**
+-
+
+**¿Qué resultado obtuviste?**
+
+
+**Recuerda los conceptos de paso por valor y paso por referencia en programación. Muestra ejemplos de este concepto en javascript.**
+-
+
+**¿Qué tipo de paso se está realizando en el código?**
+-
+
+**¿Qué aprendiste?**
+-
 
 
 
 
 
-
-
-
-
-
-```
