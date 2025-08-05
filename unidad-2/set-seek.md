@@ -158,15 +158,93 @@ console.log("Fuera de la función:", persona);
 
 codigo modificado:
 ```
+let t = 0;  // parámetro de interpolación
+let increasing = true;
 
+function setup() {
+  createCanvas(200, 200);
+}
+
+function draw() {
+  background(200);
+  
+  let color = lerpColor('red','blue',t);
+  
+
+  let v0 = createVector(100, 100);  // origen
+  let v1 = createVector(60, 0);     // vector rojo
+  let v2 = createVector(0, 60);     // vector azul
+  
+  let startGreen = p5.Vector.add(v0, v1);       // inicio en punta de rojo
+  let vecGreen = p5.Vector.sub(v2, v1);        // apunta hacia la punta de   azul
+
+  let v3 = p5.Vector.lerp(v1, v2, t); //cambio de color de la flecha
+
+  // Vectores principales
+  drawArrow(startGreen, vecGreen, 'green');
+  drawArrow(v0, v1, 'red');
+  drawArrow(v0, v2, 'blue');
+  drawArrow(v0, v3, color);
+
+  // Flecha verde: desde la punta de v1 hasta la punta de v2
+  
+  
+
+  // Animación de t (va de 0 → 1 → 0)
+  if (increasing) {
+    t += 0.01;
+    if (t >= 1) increasing = false;
+  } else {
+    t -= 0.01;
+    if (t <= 0) increasing = true;
+  }
+}
+
+function drawArrow(base, vec, myColor) {
+  push();
+  stroke(myColor);
+  strokeWeight(3);
+  fill(myColor);
+  translate(base.x, base.y);
+  line(0, 0, vec.x, vec.y);
+  rotate(vec.heading());
+  let arrowSize = 7;
+  translate(vec.mag() - arrowSize, 0);
+  triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
+  pop();
+}
 ```
 
 ¿Cómo funciona lerp() y lerpColor()?
-- 
+- lerp() realiza una interpolacion linear entre 2 valores especificos que se den, esto se puede usar para crear un movimiento entre 2 puntos.
+- lerpColor() realiza una interpolacion linear entre 2 colores especificos, esto se puede usar para crear un degradado entre 2 colores.
 
 ¿Cómo se dibuja una flecha usando drawArrow()?
-- 
+- primero se le da uno punto de origen o base de donde partir, luego le agrega el color que se le asigne, por ultimo traza un vector en la direccion del punto final que se le de y dibuja la cabeza de la flecha.
 
 
+### Actividad 06
 
+**Cuál es el concepto del marco motion 101 y cómo se interpreta geométricamente.**
+- El concepto de motion 101 es que el movimiento de un objeto consista en 2 pasos que se repiten una y otra vez:
+  1. a la posicion del objeto se le añade velocidad
+  2. se dibuja la nueva posicion del objeto
+
+geometricamente hablando, el motion 101 consiste en 2 vectores, uno que determina la posicion del objeto, y otro que determina la velocidad de desplazamiento de este, para realizar el movimiento del objeto lo que se hace es sumar los valores del vector de velocidad al vector de posicion y actualizar la ubicacion donde se dibuja el objeto acorde al vector posicion.
+
+**¿Cómo se aplica motion 101 en el ejemplo?**
+- en el ejemplo se aplico el motion 101 en la clase mover, donde creo un vector position y un vector velocity, para despues en la funcion update hacer que el vector velocity fuera sumado al vector position para hacer que el  objeto se mueva a lo largo del canvas.
+
+### Actividad 07
+
+*Para investigador el significado de esta frase te propone que construyas un experimento donde analices cómo se comporta un objeto en movimiento con:*
+
+*Aceleración constante.
+Aceleración aleatoria.
+Aceleración hacia el mouse.*
+
+**¿Qué observaste cuando usas cada una de las aceleraciones propuestas?**
+- cuando la aceleracion es aleatoria, la velocidad de desplazamiento del objeto variaba bastante, parecia erratico y lo hacia impredecible no solo en cuanto a velocidad sino que tambien direccion.
+- cuando la aceleracion es constante, la velocidad de desplazamiento del objeto aumenta gradualmente pero de forma constante, lo que hacia que cada vez fuera mas rapido.
+- cuando la acelracion es hacia el mouse, este aceleraba y se hacia mas rapido hasta que llegara a la posicion del mouse, de ahi este desaceleraba, aunque para este punto ya la velocidad era tanta que se pasaba de la posicion y volvia a aclerar hasta que llegara al mouse y asi seguia el ciclo de desacelerar/frenar y acelerar.
 
