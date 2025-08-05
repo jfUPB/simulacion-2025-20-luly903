@@ -17,7 +17,8 @@
 
 **Muestra el código que utilizaste para resolver el ejercicio.**
 - codigo para el walker vectorizado:
-```
+  
+``` js
 // The Nature of Code
 // Daniel Shiffman
 // http://natureofcode.com
@@ -65,7 +66,7 @@ class Walker {
 
  ### Actividad 03
 
-```
+``` js
 let position;
 
 function setup() {
@@ -109,7 +110,7 @@ console.log("Fuera de la función:", x);
 
 ```
 - paso por referencia:
-```
+``` js
 function cambiarObjeto(obj) {
     obj.nombre = "Carlos";  
     console.log("Dentro de la función:", obj);
@@ -157,7 +158,8 @@ console.log("Fuera de la función:", persona);
 ### Actividad 05
 
 codigo modificado:
-```
+
+``` js
 let t = 0;  // parámetro de interpolación
 let increasing = true;
 
@@ -247,4 +249,5 @@ Aceleración hacia el mouse.*
 - cuando la aceleracion es aleatoria, la velocidad de desplazamiento del objeto variaba bastante, parecia erratico y lo hacia impredecible no solo en cuanto a velocidad sino que tambien direccion.
 - cuando la aceleracion es constante, la velocidad de desplazamiento del objeto aumenta gradualmente pero de forma constante, lo que hacia que cada vez fuera mas rapido.
 - cuando la acelracion es hacia el mouse, este aceleraba y se hacia mas rapido hasta que llegara a la posicion del mouse, de ahi este desaceleraba, aunque para este punto ya la velocidad era tanta que se pasaba de la posicion y volvia a aclerar hasta que llegara al mouse y asi seguia el ciclo de desacelerar/frenar y acelerar.
+
 
