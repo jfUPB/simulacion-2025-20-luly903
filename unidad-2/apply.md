@@ -6,9 +6,17 @@
 ### Activida 08
 
 **descripción**
-El concepto
+- El concepto de mi siguiente obra es de simetria y reflejos, en este caso cuando la persona interactue con la obra usando el mouse, se generaran dos traos: uno que siga la posicion del mouse (en una velocidad que va creciendo y decreciendo linealmente)  y otro que vaya en direccion opuesta a este, de esta forma, el usuario puede dejar su imaginacion fluir y crear obras de arte simetricas, pues lo que este pasando en un lado del canvas se vera reflejado en el otro lado de este.
 
-codigo
+**Como aplico el motion 101**
+- para esta obra aplico el motion 101 en la formq que dirijo el movimiento de los trazos con el mouse, en este caso, creo unos vectores posicion, velocidad, aceleracion y direccion. Aqui no uso solo el vector de velocidad para determinar la direccion del objeto ya que planeo agregar aceleracion, ademas de que la direccion es una determinada por el mouse.
+
+**Que algoritmo de aceleracion planeo usar**
+- En este caso decidi aprovechar de lerp() para hacer que la aceleracion oscile entre 2 valores diferentes, de esta forma la velocidad aumenta y disminuye constantemente. Este algoritmo lo decidi aplicar para añadir un toque de vida propia al trazo, pues al moverse pareciera que primero observa para donde va el mouse para despues seguirlo.
+
+[link al codigo del sketch](https://editor.p5js.org/luly903/sketches/liaOuCkCY)
+
+**codigo**
 ```js
 let position1;
 let position2;
@@ -77,11 +85,13 @@ function draw() {
  
   noStroke();
   fill(colorOg);
-  circle(position1.x, position1.y, 48); 
+  circle(position1.x, position1.y, 30); 
   
   noStroke();
   fill(colorOp);
-  circle(position2.x, position2.y, 48); 
+  circle(position2.x, position2.y, 30); 
 }
-
 ```
+
+**foto del arte generativo:**
+<img width="696" height="461" alt="image" src="https://github.com/user-attachments/assets/5995b578-4a39-4c6d-a33d-ebc55f35c94b" />
