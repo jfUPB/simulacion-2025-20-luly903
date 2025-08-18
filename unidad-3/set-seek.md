@@ -173,21 +173,26 @@ function mousePressed() {
 
 ```
 
-[Enlace a la obra]()
+[Enlace a la obra](https://editor.p5js.org/luly903/sketches/U3MyJcUWq)
 
 Imagen:
 
+<img width="702" height="501" alt="image" src="https://github.com/user-attachments/assets/54fd1b4d-9eae-470f-9ae6-2fecd371d529" />
+
+
 
 **obra 3: Atraccion Gravitacional**
--
+- para esta obra se aplico la fuerza de atraccion gravitacional para el movimiento de la "luna" alrededor de la "tierra", para ello se aplico la formula <img width="258" height="89" alt="image" src="https://github.com/user-attachments/assets/84c66784-697b-4f7c-973a-05ff9370d28c" /> donde G es la constante gravitacional, m1 y m2 son las masas de los objetos, r es la distancia entre la "luna" y la "tierra", y <img width="25" height="28" alt="image" src="https://github.com/user-attachments/assets/f2d6ba12-a2fa-47cc-8f88-258520d3f99b" /> es el vector unitario hacia la "tierra". esto para simular el movimiento de la "luna" con respecto a la fuerza de atraccion gravitacional de la "tierra", aun asi, el usuario puede interactuar con la "luna" y agarrarla y arrojarla por la pantalla, aun asi, esta eventualmente vuelve a su trayectoria original que pareciera orbitando la "tierra".
+
 
 codigo:
 ```js
 let ball;
-let gravity;  
-let bounce = -0.7;   
+let G = 20; 
+let bounce = -0.7;
 let dragging = false;
-let prevMouse;       
+let prevMouse;
+let planet; 
 
 function setup() {
   createCanvas(600, 400);
@@ -195,11 +200,19 @@ function setup() {
  
   ball = {
     pos: createVector(width/2, 100),
-    vel: createVector(0, 0),
-    r: 25
+    vel: createVector(2, 0),
+    acc: createVector(0, 0),
+    r: 15,
+    mass: 1
   };
 
-  gravity = createVector(0, 0.5); 
+
+  planet = {
+    pos: createVector(width/2, height/2),
+    mass: 20,
+    r: 30
+  };
+
   prevMouse = createVector(mouseX, mouseY);
 }
 
@@ -207,44 +220,54 @@ function draw() {
   background(0,0,0,50);
 
   if (!dragging) {
-    // aplicar gravedad
-    ball.vel.add(gravity);
+    // calcular fuerza de atracción gravitacional
+    let force = p5.Vector.sub(planet.pos, ball.pos); // vector hacia el planeta
+    let distanceSq = constrain(force.magSq(), 100, 10000); // evitar explosión numérica
+    let strength = (G * ball.mass * planet.mass) / distanceSq;
+    force.setMag(strength);
 
-    // actualizar posición
+    // aplicar fuerza
+    ball.acc.add(force);
+
+    // integrar movimiento
+    ball.vel.add(ball.acc);
     ball.pos.add(ball.vel);
+    ball.acc.mult(0);
 
-    // rebote en el piso
-    if (ball.pos.y + ball.r > height) {
-      ball.pos.y = height - ball.r;
-      ball.vel.y *= bounce;
-    }
-
-    // rebote en paredes
-    if (ball.pos.x - ball.r < 0 || ball.pos.x + ball.r > width || ball.pos.y - ball.r < 0 || ball.pos.y + ball.r > height) {
+    
+    if (ball.pos.x - ball.r < 0 || ball.pos.x + ball.r > width) {
       ball.vel.x *= bounce;
-      ball.vel.y *= bounce;
       ball.pos.x = constrain(ball.pos.x, ball.r, width - ball.r);
+    }
+    if (ball.pos.y - ball.r < 0 || ball.pos.y + ball.r > height) {
+      ball.vel.y *= bounce;
       ball.pos.y = constrain(ball.pos.y, ball.r, height - ball.r);
     }
   } else {
     // seguir el mouse cuando se arrastra
     ball.pos.set(mouseX, mouseY);
 
-    // calcular velocidad según movimiento del mouse
+    // calcular velocidad según arrastre
     let mouseNow = createVector(mouseX, mouseY);
     ball.vel = p5.Vector.sub(mouseNow, prevMouse);
   }
 
-  fill(100, 200, 255);
+
+  fill(154, 255, 0);
+  ellipse(planet.pos.x, planet.pos.y, planet.r*2);
+
+ 
+  noStroke();
+  fill(255, 255, 255);
   ellipse(ball.pos.x, ball.pos.y, ball.r*2);
 
   // actualizar referencia del mouse
   prevMouse.set(mouseX, mouseY);
 
-  // texto
+
   fill(255);
   textSize(16);
-  text("Arrastra la pelota y suéltala para lanzarla", 20, 30);
+  text("Arrastra la pelota y suéltala: gravedad hacia el planeta", 20, 30);
 }
 
 function mousePressed() {
@@ -252,19 +275,22 @@ function mousePressed() {
   let d = dist(mouseX, mouseY, ball.pos.x, ball.pos.y);
   if (d < ball.r) {
     dragging = true;
-    ball.vel.set(0, 0); // resetea velocidad al agarrar
+    ball.vel.set(0, 0);
   }
 }
 
 function mouseReleased() {
-  dragging = false; // al soltar, se lanza con la velocidad acumulada
+  dragging = false;
 }
-
 ```
 
-[Enlace a la obra]()
+[Enlace a la obra](https://editor.p5js.org/luly903/sketches/7cIdJH-uh)
 
 Imagen:
+
+<img width="692" height="476" alt="image" src="https://github.com/user-attachments/assets/00312ab3-b297-4728-8df4-088cf09ca8d4" />
+
+
 
 
 
