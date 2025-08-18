@@ -8,7 +8,7 @@
 Inventa tres obras generativas interactivas, uno para cada una de las siguientes fuerzas:
 
 **obra 1: Friccion**
-- para esta obra, se aplico la fuerza de friccion en el movimiento delcuadrado cada vez que el circulo (que controla el usuario) lo empuja, para este se aplico la formula de Fr = -c*v, donde c es el coeficiente de friccion y v es el vector de velocidad del cuadrado, esto se hizo para hacer el movimiento del cuadrado mas realista y entretenido, ya que no se queda automaticamente quieto o sigue moviendose a la misma velocidad, sino que este va parando a medida que se desplaza.
+- para esta obra, se aplico la fuerza de friccion en el movimiento delcuadrado cada vez que el circulo (que controla el usuario) lo empuja, para este se aplico la formula 'Fr = -c*v', donde c es el coeficiente de friccion y v es el vector de velocidad del cuadrado, esto se hizo para hacer el movimiento del cuadrado mas realista y entretenido, ya que no se queda automaticamente quieto o sigue moviendose a la misma velocidad, sino que este va parando a medida que se desplaza. 
 
 codigo:
 ```js
@@ -104,8 +104,13 @@ function circleBoxCollision(c, b) {
 
 Imagen:
 
+<img width="918" height="687" alt="image" src="https://github.com/user-attachments/assets/8905cf78-095c-421e-acf7-45eeaebad812" />
+
+
+
+
 **obra 2: Resistencia del aire y fluidos**
--
+- para esta obra se aplico tanto la resistencia del aire como del agua en cuanto al movimiento de las particulas o "gotas" que caen en la obra, para ello se aplico la formula 'Fd = -c * |v|^2 * v^', donde c es el coeficiente de drag o arrastre del aire o fluido, |v| es la magnitud del vector de velocidad de las gotas, y v^ es la direccion de del vector de velocidad de las gotas. Gracias a esto el usuario puede cambiar la velocidad de movimiento de las gotas dependiendo de la resistencia que se aplique al hacer click izquierdo.
 
 codigo:
 ```js
@@ -260,6 +265,7 @@ function mouseReleased() {
 [Enlace a la obra]()
 
 Imagen:
+
 
 
 
