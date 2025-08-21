@@ -39,7 +39,35 @@
 
 ### Actividad 12
 
+compañero: Daniel Betancourt
+
+Claridad del Concepto: la obra del compañero refleja el problema de los n-cuerpos y las esculturas cineticas de Calder de forma creativa y entretenida.
+
+
+Implementación de Fuerzas: las fuerzas se aplican correctamente.
+
+
+Creatividad en el Modelado: La obra me parece bastante creativa, bonita y entretenida, ver como los cuadrados se acercan hacia el mouse me causó gracia aunque no se porque exactamente.
+
+
+Calidad de la Interactividad: Me hubiera gustado que hubiera un poco mas de interactividad pero aun asi la que hay me entretiene y los aspectos visuales hacen que la experiencia sea entretenida incluso con la interaccion limitada.
 
 
 
+### Actividad 13
+
+**Continuar: ¿Qué actividad o concepto de esta unidad te resultó más “revelador” para entender las fuerzas en el arte generativo?**
+- El problema de los n-cuerpos.
+
+**Dejar de hacer: ¿Hubo alguna actividad que te pareció redundante o menos efectiva para comprender el modelado de fuerzas?**
+- No.
+  
+**Progresión conceptual: ¿El paso de manipular aceleración directamente (unidad 2) a modelar fuerzas (unidad 3) te pareció una progresión natural y efectiva? ¿Por qué?**
+- Si, porque para las fuerzas habia que tener en claro como funciona la aceleracion, por lo que el paso de la ud 2 a la ud 3 fue suave.
+
+**Conexión arte-física: ¿Cómo te ha ayudado esta unidad a ver la conexión entre conceptos físicos y expresión artística? ¿Te sientes más cómodo “jugando” con las leyes de la física en tus creaciones?**
+- Si, ya que antes ni sabia como aplicar estos conceptos en codigo de forma efectiva.
+
+**Comentario adicional: ¿Algo más que quieras compartir sobre tu experiencia explorando fuerzas en el arte generativo?**
+- no.
 
