@@ -7,8 +7,9 @@
 ### Actividad 10
 
 **Explica cómo modelaste el problema de los n-cuerpos en tu obra.**
+En este caso para el problema de los n-cuerpos me apoye de los ejemplos del texto guia y de chatgpt para modelar las interacciones entre los movers, en este caso mas especificamente, los cambios de comportamiento cuando el usario interactua con la obra. Para el movimiento gravitatorio entre los movers (que son en este caso los cuerpos), estos en un principio gravitan hacia otros movers cercanos a partir de la fuerza de atraccion gravitacional entre cuerpos (con una ligera variacion aplicando el ruido de perlin), pero al hacer click izquierdo, los movers cambian al ser afectados por una nueva fuerza que los hace caer hacia abajo (o una baja probabilidad de que "caigan" hacia arriba), si se hace click izquierdo, estos volveran a su estado original.
 
-[link a la obra]()
+[link a la obra](https://editor.p5js.org/luly903/sketches/P5edxTc5D)
 
 **código**
 ```js
@@ -171,4 +172,5 @@ function levyFlight() {
 **Imagen de la obra:**
 
 <img width="884" height="667" alt="image" src="https://github.com/user-attachments/assets/dbed5523-feee-4f53-a93c-fc697f3f1000" />
+
 
