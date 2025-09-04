@@ -4,15 +4,15 @@
 
 * ¿Qué concepto de la unidad 4 y cómo lo aplicaste en la obra?
 > Tu respuesta aquí:
-> Aplique los concetos del movimiento angular y oscilatorio en el pendulo principal que uno puede mover y arrastrar a otros lados. Para esto 
+> Aplique los conceptos del movimiento angular y oscilatorio en el pendulo principal que uno puede mover y arrastrar a otros lados. En este caso se cambiaron las unidades normales de velocidad y aceleracion por aceleracion y velocidad angulares, además, integré una fuerza restauradora radial que funciona como un resorte, generando pequeñas oscilaciones adicionales al movimiento oscilatorio natural del péndulo.
 
 * ¿Qué concepto de la unidad 3 y cómo lo aplicaste en la obra?
 > Tu respuesta aquí:
-> De esta unidad aplique el concepto de las fueras acumulativas, pues el movimiento del pendulo esta compuesto por la fuerza aplicada por la gravedad, la fuerza de friccion (la cual en este caso esta mostrada como amortiguamiento), y la fuerza restauradora que actua cunado agarramos y alargamos el la "cuerda" del pundulo como si fuera un resorte, la cuales unidas generan la aceleracion que influye en el movimiento del pendulo, ademas de aplicar el concepto de fuerza de atraccion gravitacional en los cuerpos que orbitan alrededor del pendulo principal, tambien llamado bob.
+> De esta unidad aplique el concepto de las fueras acumulativas, pues el movimiento del pendulo esta compuesto por la fuerza aplicada por la gravedad, la fuerza de friccion (la cual en este caso esta mostrada como amortiguamiento), y la fuerza restauradora que actua cuando agarramos y alargamos la "cuerda" del pendulo como si fuera un resorte, la cuales unidas generan la aceleracion que influye en el movimiento del pendulo, ademas de aplicar el concepto de fuerza de atraccion gravitacional en los cuerpos que orbitan alrededor del pendulo principal, tambien llamado bob.
 
 * ¿Qué concepto de la unidad 2 y cómo lo aplicaste en la obra?
 > Tu respuesta aquí:
-> Aplique el marco de motion 101 y el uso de vectores para el movimiento del pendulo. En este caso, al vector posicion del pendulo se le sumaba el vector de velocidad angular, y al vector de velocidad se le sumaba el vector de aceleracion angular en cada frame para que actualizara la posicion final del pendulo dependiendo de la interaccion.
+> Aplique el marco de motion 101 y el uso de vectores para el movimiento del pendulo. En este caso, aplique lo equivalente al marco de motion 101 en el movimiento del pendulo actualizando en cada frame la acelracion y velocidad angular del pendulo y por ende, su posicion, ademas de usar vectores para determinar la posicion del bob y como se desplazaria por el canvas.
 
 * ¿Qué concepto de la unidad 1 y cómo lo aplicaste en la obra?
 > Tu respuesta aquí:
@@ -176,6 +176,7 @@ function mouseReleased() {
 ## Captura de pantalla representativa
 
 <img width="817" height="711" alt="image" src="https://github.com/user-attachments/assets/45614ce5-53d2-4a34-a055-355d64f6422f" />
+
 
 
 
