@@ -16,7 +16,7 @@
 
 * ¿Qué concepto de la unidad 1 y cómo lo aplicaste en la obra?
 > Tu respuesta aquí:
-> De esta unidad aplique el concepto de aleatoriedad principalmente en los colores de los cuerpos que orbitan alrededor del pendulo principal (tambien llamado bob). En este caso, lo que
+> De esta unidad aplique el concepto de aleatoriedad principalmente en los cuerpos que orbitan alrededor del pendulo principal (tambien llamado bob). En este caso, se aplico el random() simple para que estos tuvieran diferentes velocidades, tamaños y colores cada vez que fueran creados, esto le da un efecto unico y caotico al pendulo donde siempre esta cambiando y cada experiencia de resultados diferentes
 
 ## ¿Cómo resolviste la interacción?
 > Tu respuesta aquí:
@@ -176,6 +176,7 @@ function mouseReleased() {
 ## Captura de pantalla representativa
 
 <img width="817" height="711" alt="image" src="https://github.com/user-attachments/assets/45614ce5-53d2-4a34-a055-355d64f6422f" />
+
 
 
 
