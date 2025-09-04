@@ -4,11 +4,11 @@
 
 * ¿Qué concepto de la unidad 4 y cómo lo aplicaste en la obra?
 > Tu respuesta aquí:
-> Aplique los concetos del movimiento angular y oscilatorio en el pendulo principal que uno puede mover y arrastrar a otros lados.
+> Aplique los concetos del movimiento angular y oscilatorio en el pendulo principal que uno puede mover y arrastrar a otros lados. Para esto 
 
 * ¿Qué concepto de la unidad 3 y cómo lo aplicaste en la obra?
 > Tu respuesta aquí:
-> De esta unidad aplique 
+> De esta unidad aplique el concepto de las fueras acumulativas, pues el movimiento del pendulo esta compuesto por la fuerza aplicada por la gravedad, la fuerza de friccion (la cual en este caso esta mostrada como amortiguamiento), y la fuerza restauradora que actua cunado agarramos y alargamos el la "cuerda" del pundulo como si fuera un resorte, la cuales unidas generan la aceleracion que influye en el movimiento del pendulo, ademas de aplicar el concepto de fuerza de atraccion gravitacional en los cuerpos que orbitan alrededor del pendulo principal, tambien llamado bob.
 
 * ¿Qué concepto de la unidad 2 y cómo lo aplicaste en la obra?
 > Tu respuesta aquí:
@@ -16,7 +16,7 @@
 
 * ¿Qué concepto de la unidad 1 y cómo lo aplicaste en la obra?
 > Tu respuesta aquí:
-> De esta unidad aplique el concepto de aleatoriedad principalmente en los cuerpos que orbitan alrededor del pendulo principal (tambien llamado bob). En este caso, se aplico el random() simple para que estos tuvieran diferentes velocidades, tamaños y colores cada vez que fueran creados, esto le da un efecto unico y caotico al pendulo donde siempre esta cambiando y cada experiencia de resultados diferentes
+> De esta unidad aplique el concepto de aleatoriedad principalmente en los cuerpos que orbitan alrededor del pendulo principal (tambien llamado bob). En este caso, se aplico el random() simple para que estos tuvieran diferentes velocidades, tamaños y colores cada vez que fueran creados, esto le da un efecto unico al pendulo donde siempre esta cambiando y cada experiencia sea diferente.
 
 ## ¿Cómo resolviste la interacción?
 > Tu respuesta aquí:
@@ -176,6 +176,7 @@ function mouseReleased() {
 ## Captura de pantalla representativa
 
 <img width="817" height="711" alt="image" src="https://github.com/user-attachments/assets/45614ce5-53d2-4a34-a055-355d64f6422f" />
+
 
 
 
