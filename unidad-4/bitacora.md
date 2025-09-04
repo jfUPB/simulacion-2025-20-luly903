@@ -4,19 +4,19 @@
 
 * ¿Qué concepto de la unidad 4 y cómo lo aplicaste en la obra?
 > Tu respuesta aquí:
-> Aplique los concetos del movimiento angular y oscilatorio en el pendulo principal que uno puede mover y arrastrar a otros lados
+> Aplique los concetos del movimiento angular y oscilatorio en el pendulo principal que uno puede mover y arrastrar a otros lados.
 
 * ¿Qué concepto de la unidad 3 y cómo lo aplicaste en la obra?
 > Tu respuesta aquí:
->
+> De esta unidad aplique 
 
 * ¿Qué concepto de la unidad 2 y cómo lo aplicaste en la obra?
 > Tu respuesta aquí:
->
+> Aplique el marco de motion 101 y el uso de vectores para el movimiento del pendulo. En este caso, al vector posicion del pendulo se le sumaba el vector de velocidad angular, y al vector de velocidad se le sumaba el vector de aceleracion angular en cada frame para que actualizara la posicion final del pendulo dependiendo de la interaccion.
 
 * ¿Qué concepto de la unidad 1 y cómo lo aplicaste en la obra?
 > Tu respuesta aquí:
->
+> De esta unidad aplique el concepto de aleatoriedad principalmente en los colores de los cuerpos que orbitan alrededor del pendulo principal (tambien llamado bob). En este caso, lo que
 
 ## ¿Cómo resolviste la interacción?
 > Tu respuesta aquí:
@@ -176,6 +176,7 @@ function mouseReleased() {
 ## Captura de pantalla representativa
 
 <img width="817" height="711" alt="image" src="https://github.com/user-attachments/assets/45614ce5-53d2-4a34-a055-355d64f6422f" />
+
 
 
 
