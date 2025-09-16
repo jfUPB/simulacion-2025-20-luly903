@@ -215,3 +215,12 @@ function keyPressed() {
 }
 ```
 
+imagenes de la obra:
+
+<img width="895" height="667" alt="image" src="https://github.com/user-attachments/assets/c3e6ca92-2d56-4f77-b8fc-a1ba586f9589" />
+
+<img width="900" height="676" alt="image" src="https://github.com/user-attachments/assets/752e6fdc-7db8-48c4-ad06-8c4c3f6bc16f" />
+
+
+<img width="896" height="680" alt="image" src="https://github.com/user-attachments/assets/c1827b26-da2e-4e88-bf1a-12c353797bd4" />
+
