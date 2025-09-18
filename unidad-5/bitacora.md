@@ -8,7 +8,7 @@
 
 **modificacion codigos:**
 
-*ejemplo 4.2: An array of particles:* agregue 3 variables random() R, G Y B en la clase particle para randomizar los colores de las particulas (Unidad 1).
+*ejemplo 4.2: An array of particles:* agregue 3 variables random() R, G Y B en la clase particle para randomizar los colores de las particulas en el array (Unidad 1).
 
 codigo fuente:
 
@@ -67,7 +67,7 @@ class Particle {
 }
 ```
 sketch
-```
+```js
 // The Nature of Code
 // Daniel Shiffman
 // http://natureofcode.com
@@ -803,7 +803,7 @@ imagen:<img width="707" height="264" alt="image" src="https://github.com/user-at
 
 ## Actividad 03
 
-**concepto:** una varita magica que tenga destellos saliendo de este y se pueda usar para dibujar en el canvas usando el mouse, con la posibilidad de cmabiar de color cuando se oprima la tecla espacio y el canvas se limpie cuando se oprima la tecla SHIFT. El proposito es que el mismo usuario pueda crear su propia obra de arte de una forma divertida y dinamica.
+**concepto:** una varita magica que tenga destellos saliendo de este y se pueda usar para dibujar en un canvas completamente negro usando el mouse como si la varita iluminara el vacio con dibujos y formas que el usuario cree, con la posibilidad de cmabiar de color cuando se oprima la tecla espacio y el canvas se limpie cuando se oprima la tecla SHIFT para iniciar de nuevo. El proposito es que el mismo usuario pueda crear su propia obra de arte de una forma divertida con un toque magico.
 
 **Codigo fuente**
 ```js
@@ -1016,6 +1016,21 @@ imagenes de la obra:
 <img width="896" height="680" alt="image" src="https://github.com/user-attachments/assets/c1827b26-da2e-4e88-bf1a-12c353797bd4" />
 
 
+
+## Rubrica
+
+**1. Investigación y Experimentación (Evidencia en Actividad 2): 3.5**
+   - justificacion: A pesar de que hice las modificaciones en los codigos y los analice para entender como funcionaban y como hacer las modificaciones implementando conceptos de cada unidad vista hasta ahora, No escribi un descripcion detallada de como funcionaba cada codigo individualmente, sino que me limite a escribir que tipo de modificacion hice al codigo y que provocara que hiciera, aunque si escribi al principio como todos los codigos gestionan las particulas en la memoria y su creacion y destruccion.
+  
+**2. Intención y Diseño (Proceso de Actividad 3): 5.0**
+  - justificacion: Explique el concepto de mi obra, su proposito y el producto final concuerda con lo planteado anteriormente, incluyendo la interaccion, comportamientos y estetica, aunque es posible que la descripcion no sea muy extensa o detallada, aun asi es puntual y cubre los criterios propuestos.
+
+**3. Aplicación Técnica (Código de Actividad 3): 3.8**
+  - justificacion: El codigo hace uso de clases modulares y herencias, lo que genera particulas con diferentes figuras (triangulo, circulo) y tamaños, ademas de gestionar la memoria al limitar la cantidad de particulas o destellos que pueden existir en el array y constantemente eliminar las particulas que ya hayan terminado su tiempo de vida. Aun asi, las herencias y polimorfismos podrian haber sido implementados de mejor forma para organizar y optimizar mejor el codigo.
+
+
+**4. Calidad de la Obra Final (Artefacto Entregado): 4.4**
+  - justificacion: La obra final es dinamica y permite que cada iteracion de la misma sea unica y diferente gracias a que deja que el usuario sea quien cree su propio arte a su gusto mientras usa la varita magica para traer "luz" en la oscuridad del canvas, con absoluta libertad de dibujar lo que desee. Aun asi, por algun motivo que no he podido descrifrar, hay momentos donde el framerate de la obra baja y se traba, y aunque estos momentos son breves y espontaneos y pasan muy poco, aun asi suceden y sin importar que tanto controle o cambie la gestion de particulas en la memoria, este problema aun sucede, por lo que no puedo decir que la obra no tiene defectos en su ejecucion.
 
 
 
