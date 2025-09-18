@@ -263,7 +263,7 @@ imagen:
 
 
 
-*ejemplo 4.5: a Particle System with Inheritance and Polymorphism:* modifique la clase emetitter para que este colgara de un pendulo que se mueve de forma oscilatoria mientras genera las particulas.
+*ejemplo 4.5: a Particle System with Inheritance and Polymorphism:* modifique la clase emetitter para que este colgara de un pendulo que se mueve de forma oscilatoria mientras genera las particulas (unidad 4).
 
 codigo fuente:
 emitter
@@ -469,12 +469,333 @@ imagen:
 <img width="701" height="263" alt="image" src="https://github.com/user-attachments/assets/2506b55f-29a1-421b-bbbd-757374b6c0d7" />
 
 
-ejemplo 4.6: a Particle System with Forces.
+*ejemplo 4.6: a Particle System with Forces.*: agregue una fuerza adicional a la de la gravedad (viento) en la funcion de draw, que hace parecer como si las particulas estuvieran siendo llevadas por el viento (unidad 3).
+
+codigo fuente:
+
+emitter
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+class Emitter {
+
+  constructor(x, y) {
+    this.origin = createVector(x, y);
+    this.particles = [];
+  }
+
+  addParticle() {
+    this.particles.push(new Particle(this.origin.x, this.origin.y));
+  }
+
+  applyForce(force) {
+    //{!3} Using a for of loop to apply the force to all particles
+    for (let particle of this.particles) {
+      particle.applyForce(force);
+    }
+  }
+
+  run() {
+    //{!7} Can’t use the enhanced loop because checking for particles to delete.
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      const particle = this.particles[i];
+      particle.run();
+      if (particle.isDead()) {
+        this.particles.splice(i, 1);
+      }
+    }
+  }
+}
+
+```
+
+particle
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+// Simple Particle System
+
+// A simple Particle class
+
+class Particle {
+  constructor(x, y) {
+    this.position = createVector(x, y);
+    this.acceleration = createVector(0, 0.0);
+    this.velocity = createVector(random(-1, 1), random(-2, 0));
+    this.lifespan = 255.0;
+    this.mass = 1; // Let's do something better here!
+  }
+
+  run() {
+    this.update();
+    this.show();
+  }
+
+  applyForce(force) {
+    let f = force.copy();
+    f.div(this.mass);
+    this.acceleration.add(f);
+  }
+
+  // Method to update position
+  update() {
+    this.velocity.add(this.acceleration);
+    this.position.add(this.velocity);
+    this.acceleration.mult(0);
+    this.lifespan -= 2.0;
+  }
+
+  // Method to display
+  show() {
+    stroke(0, this.lifespan);
+    strokeWeight(2);
+    fill(127, this.lifespan);
+    circle(this.position.x, this.position.y, 8);
+  }
+
+  // Is the particle still useful?
+  isDead() {
+    return this.lifespan < 0.0;
+  }
+}
+
+```
+
+sketch
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+let emitter;
+
+
+function setup() {
+  createCanvas(620, 480);
+  emitter = new Emitter(width / 10, 50);
+}
+
+function draw() {
+  background(255,30);
+  let wind = createVector(0.1,0);
+  emitter.applyForce(wind);
+  
+  // Apply gravity force to all Particles
+  let gravity = createVector(0, 0.1);
+  emitter.applyForce(gravity);
+
+  emitter.addParticle();
+  emitter.run();
+}
+```
+
+[Link al sketch]([https://editor.p5js.org/luly903/full/TAlPIYPTJ](https://editor.p5js.org/luly903/full/m4mDYCHsd))
+
+imagen: <img width="664" height="533" alt="image" src="https://github.com/user-attachments/assets/29ce06c6-2baa-41d4-aa9c-886a59645761" />
 
 
 
 
+*4.7: a Particle System with a Repeller:* modifique la clase emitter y particle para que particle tuviera subclases de particulas con diferentes formas (triangulo, circulo y cuadrado) y colores que heredaran de ella y de esta forma el emitter generara 3 tipos de particulas diferentes (unidad 5).
 
+codigo fuente:
+
+emitter
+```js
+// The Emitter manages all the particles.
+class Emitter {
+
+  constructor(x, y) {
+    this.origin = createVector(x, y);
+    this.particles = [];
+  }
+
+  addParticle() {
+    // Elegir aleatoriamente el tipo de partícula
+    let r = floor(random(3));
+    let p;
+    if (r === 0) {
+      p = new CircleParticle(this.origin.x, this.origin.y);
+    } else if (r === 1) {
+      p = new SquareParticle(this.origin.x, this.origin.y);
+    } else {
+      p = new TriangleParticle(this.origin.x, this.origin.y);
+    }
+    this.particles.push(p);
+  }
+
+  applyForce(force) {
+    for (let particle of this.particles) {
+      particle.applyForce(force);
+    }
+  }
+
+  applyRepeller(repeller) {
+    for (let particle of this.particles) {
+      let force = repeller.repel(particle);
+      particle.applyForce(force);
+    }
+  }
+
+  run() {
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      const particle = this.particles[i];
+      particle.run();
+      if (particle.isDead()) {
+        this.particles.splice(i, 1);
+      }
+    }
+  }
+}
+
+```
+
+particle
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+// Clase base de Partícula
+class Particle {
+  constructor(x, y) {
+    this.position = createVector(x, y);
+    this.velocity = createVector(random(-1, 1), random(-1, 0));
+    this.acceleration = createVector(0, 0);
+    this.lifespan = 255.0;
+  }
+
+  run() {
+    this.update();
+    this.show();
+  }
+
+  applyForce(f) {
+    this.acceleration.add(f);
+  }
+
+  // Método para actualizar posición
+  update() {
+    this.velocity.add(this.acceleration);
+    this.position.add(this.velocity);
+    this.lifespan -= 2;
+    this.acceleration.mult(0);
+  }
+
+  // Método de display (sobrescrito en subclases)
+  show() {
+    // Clase abstracta → no dibuja nada aquí
+  }
+
+  isDead() {
+    return this.lifespan < 0.0;
+  }
+}
+
+// Partícula circular
+class CircleParticle extends Particle {
+  show() {
+    stroke(0, this.lifespan);
+    strokeWeight(2);
+    fill(127, this.lifespan);
+    circle(this.position.x, this.position.y, 8);
+  }
+}
+
+// Partícula cuadrada
+class SquareParticle extends Particle {
+  show() {
+    stroke(50, this.lifespan);
+    strokeWeight(2);
+    fill(200, 100, 100, this.lifespan);
+    rectMode(CENTER);
+    rect(this.position.x, this.position.y, 10, 10);
+  }
+}
+
+// Partícula triangular
+class TriangleParticle extends Particle {
+  show() {
+    stroke(100, this.lifespan);
+    strokeWeight(2);
+    fill(100, 200, 150, this.lifespan);
+    push();
+    translate(this.position.x, this.position.y);
+    beginShape();
+    vertex(-6, 6);
+    vertex(6, 6);
+    vertex(0, -6);
+    endShape(CLOSE);
+    pop();
+  }
+}
+
+```
+
+repeller
+```js
+class Repeller {
+  constructor(x, y) {
+    this.position = createVector(x, y);
+    //{!1} How strong is the repeller?
+    this.power = 200;
+  }
+
+  show() {
+    stroke(0);
+    strokeWeight(2);
+    fill(127);
+    circle(this.position.x, this.position.y, 32);
+  }
+
+  repel(particle) {
+    //{!6 .code-wide} This is the same repel algorithm we used in Chapter 2: forces based on gravitational attraction.
+    let force = p5.Vector.sub(this.position, particle.position);
+    let distance = force.mag();
+    distance = constrain(distance, 5, 50);
+    let strength = (-1 * this.power) / (distance * distance);
+    force.setMag(strength);
+    return force;
+  }
+}
+
+```
+
+sketch
+```js
+// One ParticleSystem
+let emitter;
+
+//{!1} One repeller
+let repeller;
+
+function setup() {
+  createCanvas(640 , 240);
+  emitter = new Emitter(width / 2, 60);
+  repeller = new Repeller(width / 2, 250);
+}
+
+function draw() {
+  background(255);
+  emitter.addParticle();
+  // We’re applying a universal gravity.
+  let gravity = createVector(0, 0.1);
+  emitter.applyForce(gravity);
+  //{!1} Applying the repeller
+  emitter.applyRepeller(repeller);
+  emitter.run();
+
+  repeller.show();
+}
+```
+
+[link al sketch](https://editor.p5js.org/luly903/full/FN3mse5Wo)
+
+imagen:<img width="707" height="264" alt="image" src="https://github.com/user-attachments/assets/903268a8-8961-4645-9046-895ccf4e5e12" />
 
 
 
@@ -691,6 +1012,7 @@ imagenes de la obra:
 
 
 <img width="896" height="680" alt="image" src="https://github.com/user-attachments/assets/c1827b26-da2e-4e88-bf1a-12c353797bd4" />
+
 
 
 
