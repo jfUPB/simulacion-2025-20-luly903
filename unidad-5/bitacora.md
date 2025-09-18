@@ -593,9 +593,11 @@ function draw() {
 }
 ```
 
-[Link al sketch]([https://editor.p5js.org/luly903/full/TAlPIYPTJ](https://editor.p5js.org/luly903/full/m4mDYCHsd))
+[link al sketch](https://editor.p5js.org/luly903/sketches/m4mDYCHsd)
 
-imagen: <img width="664" height="533" alt="image" src="https://github.com/user-attachments/assets/29ce06c6-2baa-41d4-aa9c-886a59645761" />
+imagen: 
+
+<img width="664" height="533" alt="image" src="https://github.com/user-attachments/assets/29ce06c6-2baa-41d4-aa9c-886a59645761" />
 
 
 
@@ -1012,6 +1014,7 @@ imagenes de la obra:
 
 
 <img width="896" height="680" alt="image" src="https://github.com/user-attachments/assets/c1827b26-da2e-4e88-bf1a-12c353797bd4" />
+
 
 
 
