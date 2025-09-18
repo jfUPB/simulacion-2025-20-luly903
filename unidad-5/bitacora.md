@@ -805,6 +805,12 @@ imagen:<img width="707" height="264" alt="image" src="https://github.com/user-at
 
 **concepto:** una varita magica que tenga destellos saliendo de este y se pueda usar para dibujar en un canvas completamente negro usando el mouse como si la varita iluminara el vacio con dibujos y formas que el usuario cree, con la posibilidad de cmabiar de color cuando se oprima la tecla espacio y el canvas se limpie cuando se oprima la tecla SHIFT para iniciar de nuevo. El proposito es que el mismo usuario pueda crear su propia obra de arte de una forma divertida con un toque magico.
 
+**boceto inicial de la idea:**
+
+
+<img width="737" height="471" alt="image" src="https://github.com/user-attachments/assets/fdb09c6a-a8d6-4a7a-8866-11b1b96502f2" />
+
+
 **Codigo fuente**
 ```js
 let particles = [];
@@ -1031,6 +1037,7 @@ imagenes de la obra:
 
 **4. Calidad de la Obra Final (Artefacto Entregado): 4.4**
   - justificacion: La obra final es dinamica y permite que cada iteracion de la misma sea unica y diferente gracias a que deja que el usuario sea quien cree su propio arte a su gusto mientras usa la varita magica para traer "luz" en la oscuridad del canvas, con absoluta libertad de dibujar lo que desee. Aun asi, por algun motivo que no he podido descrifrar, hay momentos donde el framerate de la obra baja y se traba, y aunque estos momentos son breves y espontaneos y pasan muy poco, aun asi suceden y sin importar que tanto controle o cambie la gestion de particulas en la memoria, este problema aun sucede, por lo que no puedo decir que la obra no tiene defectos en su ejecucion.
+
 
 
 
