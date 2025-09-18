@@ -6,6 +6,262 @@
 - En todos los ejemplos, la creacion y desparicion de las particulas se gestiona en la clase emitter que se encarga de crear las particulas, guardarlas y eliminarlas despues de una cantidad de tiempo determinada, de esta forma, el sistema no se satura ya que cada vez que una particula realiza su recorrido y vive el tiempo debido, este no solo desaparece sino que tambien es eliminado de la memoria, optimizando asi la gestion de la misma.
 
 
+**modificacion codigos:**
+
+*ejemplo 4.2: An array of particles:* agregue 3 variables random() R, G Y B en la clase particle para randomizar los colores de las particulas (Unidad 1).
+
+codigo fuente:
+
+particle
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+// Simple Particle System
+
+// A simple Particle class
+
+class Particle {
+  constructor(x, y) {
+    this.position = createVector(x, y);
+    this.acceleration = createVector(0, 0);
+    this.velocity = createVector(random(-1, 1), random(-1, 0));
+    this.lifespan = 255.0;
+    this.R = random(255);
+    this.G = random(255);
+    this.B = random(255);
+  }
+
+  run() {
+    let gravity = createVector(0, 0.05);
+    this.applyForce(gravity);
+    this.update();
+    this.show();
+  }
+
+  applyForce(force) {
+    this.acceleration.add(force);
+  }
+
+  // Method to update position
+  update() {
+    this.velocity.add(this.acceleration);
+    this.position.add(this.velocity);
+    this.lifespan -= 2;
+    this.acceleration.mult(0);
+  }
+
+  // Method to display
+  show() {
+    stroke(0, this.lifespan);
+    strokeWeight(2);
+    fill(this.R, this.G, this.B, this.lifespan);
+    circle(this.position.x, this.position.y, 8);
+  }
+
+  // Is the particle still useful?
+  isDead() {
+    return (this.lifespan < 0.0);
+  }
+}
+```
+sketch
+```
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+let particles = [];
+
+function setup() {
+  createCanvas(640, 240);
+}
+
+function draw() {
+  background(255);
+  particles.push(new Particle(width / 2, 20));
+
+  // Looping through backwards to delete
+  for (let i = particles.length - 1; i >= 0; i--) {
+    let particle = particles[i];
+    particle.run();
+    if (particle.isDead()) {
+      //remove the particle
+      particles.splice(i, 1);
+    }
+  }
+}
+```
+[link al sketch](https://editor.p5js.org/luly903/full/j3Ap0QYie)
+
+imagen:
+
+<img width="693" height="258" alt="image" src="https://github.com/user-attachments/assets/a8ab7e63-5966-4b43-8146-7ebf8ce1c50c" />
+
+
+*ejemplo 4.4: A system of systems:* Agregue un vector de velocidad a la clase emitter una funcion update para aplicar el motion 101 en el origen del emitter para que este se mueva de arriba a abajo mientras genera las particulas (Unidad 2).
+
+codigo fuente:
+
+emitter
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+class Emitter {
+  constructor(x, y) {
+    this.origin = createVector(x, y);
+    this.particles = [];
+    this.velocity = createVector(0, 0.5);
+
+  }
+
+  addParticle() {
+    this.particles.push(new Particle(this.origin.x, this.origin.y));
+  }
+  
+  update() {
+    this.origin.add(this.velocity);
+    
+     if (this.origin.y > height || this.origin.y < 0) {
+      this.velocity.y *= -1;
+    }
+  
+  }
+  
+  run() {
+    // Looping through backwards to delete
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      this.particles[i].run();
+      if (this.particles[i].isDead()) {
+        // Remove the particle
+        this.particles.splice(i, 1);
+      }
+      
+      this.update();
+      
+    }
+
+    // Run every particle
+    // ES6 for..of loop
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of
+    // https://www.youtube.com/watch?v=Y8sMnRQYr3c
+    // for (let particle of this.particles) {
+    //   particle.run();
+    // }
+
+    // Filter removes any elements of the array that do not pass the test
+    // I am also using ES6 arrow snytax
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+    // https://www.youtube.com/watch?v=mrYMzpbFz18
+    // this.particles = this.particles.filter(particle => !particle.isDead());
+
+    // Without ES6 arrow code would look like:
+    // this.particles = this.particles.filter(function(particle) {
+    //   return !particle.isDead();
+    // });
+  }
+  
+   
+  
+  
+  
+}
+```
+
+particles
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+// Simple Particle System
+
+// A simple Particle class
+
+class Particle {
+  constructor(x, y) {
+    this.position = createVector(x, y);
+    this.acceleration = createVector(0, 0);
+    this.velocity = createVector(random(-1, 1), random(-1, 0));
+    this.lifespan = 255.0;
+  }
+
+  run() {
+    let gravity = createVector(0, 0.05);
+    this.applyForce(gravity);
+    this.update();
+    this.show();
+  }
+
+  applyForce(force) {
+    this.acceleration.add(force);
+  }
+
+  // Method to update position
+  update() {
+    this.velocity.add(this.acceleration);
+    this.position.add(this.velocity);
+    this.lifespan -= 2;
+    this.acceleration.mult(0);
+  }
+
+  // Method to display
+  show() {
+    stroke(0, this.lifespan);
+    strokeWeight(2);
+    fill(127, this.lifespan);
+    circle(this.position.x, this.position.y, 8);
+  }
+
+  // Is the particle still useful?
+  isDead() {
+    return this.lifespan < 0.0;
+  }
+}
+```
+
+sketch
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+// Particles are generated each cycle through draw(),
+// fall with gravity and fade out over time
+// A ParticleSystem object manages a variable size
+// list of particles.
+
+// an array of ParticleSystems
+let emitters = [];
+
+function setup() {
+  createCanvas(640, 240);
+  let text = createP("click to add particle systems");
+}
+
+function draw() {
+  background(255);
+  for (let emitter of emitters) {
+    emitter.run();
+    emitter.addParticle();
+  }
+}
+
+function mousePressed() {
+  emitters.push(new Emitter(mouseX, mouseY));
+}
+```
+
+[Link al sketch](https://editor.p5js.org/luly903/full/O5NLjdHy2)
+
+imagen: 
+
+<img width="700" height="273" alt="image" src="https://github.com/user-attachments/assets/a40f627f-1475-4721-afce-6fd729ede826" />
+
+
 
 
 
@@ -223,4 +479,5 @@ imagenes de la obra:
 
 
 <img width="896" height="680" alt="image" src="https://github.com/user-attachments/assets/c1827b26-da2e-4e88-bf1a-12c353797bd4" />
+
 
