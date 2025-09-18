@@ -263,6 +263,218 @@ imagen:
 
 
 
+*ejemplo 4.5: a Particle System with Inheritance and Polymorphism:* modifique la clase emetitter para que este colgara de un pendulo que se mueve de forma oscilatoria mientras genera las particulas.
+
+codigo fuente:
+emitter
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+class Emitter {
+  constructor(x, y) {
+  // Punto de anclaje (arriba del péndulo)
+    this.anchor = createVector(x, y);
+
+    // Parámetros del péndulo
+    this.r = 150;            // longitud del péndulo
+    this.angle = PI / 4;     // ángulo inicial (45°)
+    this.aVelocity = 0.0;    // velocidad angular
+    this.aAcceleration = 0.0;// aceleración angular
+    this.damping = 0.9999;    // amortiguación para que no oscile infinito
+    this.gravity = 0.4;      // "fuerza" de la gravedad
+
+    // Posición del emitter calculada desde el ángulo
+    this.position = createVector(
+      this.anchor.x + this.r * sin(this.angle),
+      this.anchor.y + this.r * cos(this.angle)
+    );
+
+    // Partículas
+    this.particles = [];
+  }
+  
+   applyForce(force) {
+    this.acceleration.add(force);
+  }
+  
+   update() {
+     // Fórmula física del péndulo
+    // a = (-g / r) * sin(theta)
+    this.aAcceleration = (-1 * this.gravity / this.r) * sin(this.angle);
+
+    // Motion angular: a → v → θ
+    this.aVelocity += this.aAcceleration;
+    this.aVelocity *= this.damping;
+    this.angle += this.aVelocity;
+
+    // Actualizar posición según el ángulo
+    this.position.x = this.anchor.x + this.r * sin(this.angle);
+    this.position.y = this.anchor.y + this.r * cos(this.angle);
+
+    // Crear nueva partícula en la posición actual del emitter
+    this.particles.push(new Particle(this.position.x, this.position.y));
+
+    // Actualizar partículas
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      let p = this.particles[i];
+      p.run();
+      if (p.isDead()) {
+        this.particles.splice(i, 1);
+      }
+    }
+  }
+
+   showAnchor() {
+    fill(200, 100, 100);
+    ellipse(this.anchor.x, this.anchor.y, 12, 12);
+    stroke(200);
+    line(this.anchor.x, this.anchor.y, this.position.x, this.position.y);
+  }
+
+  addParticle() {
+    let r = random(1);
+    if (r < 0.5) {
+      this.particles.push(new Particle(this.position.x, this.position.y));
+    } else {
+      this.particles.push(new Confetti(this.position.x, this.position.y));
+    }
+  }
+
+  run() {
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      let p = this.particles[i];
+      p.run();
+      if (p.isDead()) {
+        this.particles.splice(i, 1);
+      }
+    }
+  }
+}
+
+```
+
+particle
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+// Simple Particle System
+
+// A simple Particle class
+
+class Particle {
+  constructor(x, y) {
+    this.position = createVector(x, y);
+    this.acceleration = createVector(0, 0);
+    this.velocity = createVector(random(-1, 1), random(-1, 0));
+    this.lifespan = 255.0;
+  }
+
+  run() {
+    let gravity = createVector(0, 0.05);
+    this.applyForce(gravity);
+    this.update();
+    this.show();
+  }
+
+  applyForce(force) {
+    this.acceleration.add(force);
+  }
+
+  // Method to update position
+  update() {
+    this.velocity.add(this.acceleration);
+    this.position.add(this.velocity);
+    this.lifespan -= 2;
+    this.acceleration.mult(0);
+  }
+
+  // Method to display
+  show() {
+    stroke(0, this.lifespan);
+    strokeWeight(2);
+    fill(127, this.lifespan);
+    circle(this.position.x, this.position.y, 8);
+  }
+
+  isDead() {
+    return this.lifespan < 0.0;
+  }
+}
+
+```
+
+confetti
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+// Child class constructor
+class Confetti extends Particle {
+  // Override the show method
+  show() {
+    let angle = map(this.position.x, 0, width, 0, TWO_PI * 2);
+
+    rectMode(CENTER);
+    fill(127, this.lifespan);
+    stroke(0, this.lifespan);
+    strokeWeight(2);
+    push();
+    translate(this.position.x, this.position.y);
+    rotate(angle);
+    square(0, 0, 12);
+    pop();
+  }
+}
+
+```
+
+sketch
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+// Particles are generated each cycle through draw(),
+// fall with gravity and fade out over time
+// A ParticleSystem object manages a variable size
+// list of particles.
+
+
+let emitter;
+
+function setup() {
+  createCanvas(640, 240);
+  emitter = new Emitter(width / 2, 20);
+}
+
+function draw() {
+  background(255);
+  emitter.update();
+  emitter.showAnchor();
+  emitter.addParticle();
+  emitter.run();
+}
+```
+
+
+[Link al sketch](https://editor.p5js.org/luly903/full/TAlPIYPTJ)
+
+imagen: 
+
+<img width="701" height="263" alt="image" src="https://github.com/user-attachments/assets/2506b55f-29a1-421b-bbbd-757374b6c0d7" />
+
+
+ejemplo 4.6: a Particle System with Forces.
+
+
+
+
+
 
 
 
@@ -479,5 +691,6 @@ imagenes de la obra:
 
 
 <img width="896" height="680" alt="image" src="https://github.com/user-attachments/assets/c1827b26-da2e-4e88-bf1a-12c353797bd4" />
+
 
 
