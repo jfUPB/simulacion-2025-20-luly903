@@ -1,1 +1,1043 @@
 # Evidencias de la unidad 5
+
+## Actividad 02
+
+**¿Cómo se está gestionando la creación y la desaparción de las partículas y cómo se gestiona la memoria en cada una de las simulaciones?**
+- En todos los ejemplos, la creacion y desparicion de las particulas se gestiona en la clase emitter que se encarga de crear las particulas, guardarlas y eliminarlas despues de una cantidad de tiempo determinada, de esta forma, el sistema no se satura ya que cada vez que una particula realiza su recorrido y vive el tiempo debido, este no solo desaparece sino que tambien es eliminado de la memoria, optimizando asi la gestion de la misma.
+
+
+**modificacion codigos:**
+
+*ejemplo 4.2: An array of particles:* agregue 3 variables random() R, G Y B en la clase particle para randomizar los colores de las particulas en el array (Unidad 1).
+
+codigo fuente:
+
+particle
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+// Simple Particle System
+
+// A simple Particle class
+
+class Particle {
+  constructor(x, y) {
+    this.position = createVector(x, y);
+    this.acceleration = createVector(0, 0);
+    this.velocity = createVector(random(-1, 1), random(-1, 0));
+    this.lifespan = 255.0;
+    this.R = random(255);
+    this.G = random(255);
+    this.B = random(255);
+  }
+
+  run() {
+    let gravity = createVector(0, 0.05);
+    this.applyForce(gravity);
+    this.update();
+    this.show();
+  }
+
+  applyForce(force) {
+    this.acceleration.add(force);
+  }
+
+  // Method to update position
+  update() {
+    this.velocity.add(this.acceleration);
+    this.position.add(this.velocity);
+    this.lifespan -= 2;
+    this.acceleration.mult(0);
+  }
+
+  // Method to display
+  show() {
+    stroke(0, this.lifespan);
+    strokeWeight(2);
+    fill(this.R, this.G, this.B, this.lifespan);
+    circle(this.position.x, this.position.y, 8);
+  }
+
+  // Is the particle still useful?
+  isDead() {
+    return (this.lifespan < 0.0);
+  }
+}
+```
+sketch
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+let particles = [];
+
+function setup() {
+  createCanvas(640, 240);
+}
+
+function draw() {
+  background(255);
+  particles.push(new Particle(width / 2, 20));
+
+  // Looping through backwards to delete
+  for (let i = particles.length - 1; i >= 0; i--) {
+    let particle = particles[i];
+    particle.run();
+    if (particle.isDead()) {
+      //remove the particle
+      particles.splice(i, 1);
+    }
+  }
+}
+```
+[link al sketch](https://editor.p5js.org/luly903/full/j3Ap0QYie)
+
+imagen:
+
+<img width="693" height="258" alt="image" src="https://github.com/user-attachments/assets/a8ab7e63-5966-4b43-8146-7ebf8ce1c50c" />
+
+
+*ejemplo 4.4: A system of systems:* Agregue un vector de velocidad a la clase emitter una funcion update para aplicar el motion 101 en el origen del emitter para que este se mueva de arriba a abajo mientras genera las particulas (Unidad 2).
+
+codigo fuente:
+
+emitter
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+class Emitter {
+  constructor(x, y) {
+    this.origin = createVector(x, y);
+    this.particles = [];
+    this.velocity = createVector(0, 0.5);
+
+  }
+
+  addParticle() {
+    this.particles.push(new Particle(this.origin.x, this.origin.y));
+  }
+  
+  update() {
+    this.origin.add(this.velocity);
+    
+     if (this.origin.y > height || this.origin.y < 0) {
+      this.velocity.y *= -1;
+    }
+  
+  }
+  
+  run() {
+    // Looping through backwards to delete
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      this.particles[i].run();
+      if (this.particles[i].isDead()) {
+        // Remove the particle
+        this.particles.splice(i, 1);
+      }
+      
+      this.update();
+      
+    }
+
+    // Run every particle
+    // ES6 for..of loop
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of
+    // https://www.youtube.com/watch?v=Y8sMnRQYr3c
+    // for (let particle of this.particles) {
+    //   particle.run();
+    // }
+
+    // Filter removes any elements of the array that do not pass the test
+    // I am also using ES6 arrow snytax
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+    // https://www.youtube.com/watch?v=mrYMzpbFz18
+    // this.particles = this.particles.filter(particle => !particle.isDead());
+
+    // Without ES6 arrow code would look like:
+    // this.particles = this.particles.filter(function(particle) {
+    //   return !particle.isDead();
+    // });
+  }
+  
+   
+  
+  
+  
+}
+```
+
+particles
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+// Simple Particle System
+
+// A simple Particle class
+
+class Particle {
+  constructor(x, y) {
+    this.position = createVector(x, y);
+    this.acceleration = createVector(0, 0);
+    this.velocity = createVector(random(-1, 1), random(-1, 0));
+    this.lifespan = 255.0;
+  }
+
+  run() {
+    let gravity = createVector(0, 0.05);
+    this.applyForce(gravity);
+    this.update();
+    this.show();
+  }
+
+  applyForce(force) {
+    this.acceleration.add(force);
+  }
+
+  // Method to update position
+  update() {
+    this.velocity.add(this.acceleration);
+    this.position.add(this.velocity);
+    this.lifespan -= 2;
+    this.acceleration.mult(0);
+  }
+
+  // Method to display
+  show() {
+    stroke(0, this.lifespan);
+    strokeWeight(2);
+    fill(127, this.lifespan);
+    circle(this.position.x, this.position.y, 8);
+  }
+
+  // Is the particle still useful?
+  isDead() {
+    return this.lifespan < 0.0;
+  }
+}
+```
+
+sketch
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+// Particles are generated each cycle through draw(),
+// fall with gravity and fade out over time
+// A ParticleSystem object manages a variable size
+// list of particles.
+
+// an array of ParticleSystems
+let emitters = [];
+
+function setup() {
+  createCanvas(640, 240);
+  let text = createP("click to add particle systems");
+}
+
+function draw() {
+  background(255);
+  for (let emitter of emitters) {
+    emitter.run();
+    emitter.addParticle();
+  }
+}
+
+function mousePressed() {
+  emitters.push(new Emitter(mouseX, mouseY));
+}
+```
+
+[Link al sketch](https://editor.p5js.org/luly903/full/O5NLjdHy2)
+
+imagen: 
+
+<img width="700" height="273" alt="image" src="https://github.com/user-attachments/assets/a40f627f-1475-4721-afce-6fd729ede826" />
+
+
+
+*ejemplo 4.5: a Particle System with Inheritance and Polymorphism:* modifique la clase emetitter para que este colgara de un pendulo que se mueve de forma oscilatoria mientras genera las particulas (unidad 4).
+
+codigo fuente:
+emitter
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+class Emitter {
+  constructor(x, y) {
+  // Punto de anclaje (arriba del péndulo)
+    this.anchor = createVector(x, y);
+
+    // Parámetros del péndulo
+    this.r = 150;            // longitud del péndulo
+    this.angle = PI / 4;     // ángulo inicial (45°)
+    this.aVelocity = 0.0;    // velocidad angular
+    this.aAcceleration = 0.0;// aceleración angular
+    this.damping = 0.9999;    // amortiguación para que no oscile infinito
+    this.gravity = 0.4;      // "fuerza" de la gravedad
+
+    // Posición del emitter calculada desde el ángulo
+    this.position = createVector(
+      this.anchor.x + this.r * sin(this.angle),
+      this.anchor.y + this.r * cos(this.angle)
+    );
+
+    // Partículas
+    this.particles = [];
+  }
+  
+   applyForce(force) {
+    this.acceleration.add(force);
+  }
+  
+   update() {
+     // Fórmula física del péndulo
+    // a = (-g / r) * sin(theta)
+    this.aAcceleration = (-1 * this.gravity / this.r) * sin(this.angle);
+
+    // Motion angular: a → v → θ
+    this.aVelocity += this.aAcceleration;
+    this.aVelocity *= this.damping;
+    this.angle += this.aVelocity;
+
+    // Actualizar posición según el ángulo
+    this.position.x = this.anchor.x + this.r * sin(this.angle);
+    this.position.y = this.anchor.y + this.r * cos(this.angle);
+
+    // Crear nueva partícula en la posición actual del emitter
+    this.particles.push(new Particle(this.position.x, this.position.y));
+
+    // Actualizar partículas
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      let p = this.particles[i];
+      p.run();
+      if (p.isDead()) {
+        this.particles.splice(i, 1);
+      }
+    }
+  }
+
+   showAnchor() {
+    fill(200, 100, 100);
+    ellipse(this.anchor.x, this.anchor.y, 12, 12);
+    stroke(200);
+    line(this.anchor.x, this.anchor.y, this.position.x, this.position.y);
+  }
+
+  addParticle() {
+    let r = random(1);
+    if (r < 0.5) {
+      this.particles.push(new Particle(this.position.x, this.position.y));
+    } else {
+      this.particles.push(new Confetti(this.position.x, this.position.y));
+    }
+  }
+
+  run() {
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      let p = this.particles[i];
+      p.run();
+      if (p.isDead()) {
+        this.particles.splice(i, 1);
+      }
+    }
+  }
+}
+
+```
+
+particle
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+// Simple Particle System
+
+// A simple Particle class
+
+class Particle {
+  constructor(x, y) {
+    this.position = createVector(x, y);
+    this.acceleration = createVector(0, 0);
+    this.velocity = createVector(random(-1, 1), random(-1, 0));
+    this.lifespan = 255.0;
+  }
+
+  run() {
+    let gravity = createVector(0, 0.05);
+    this.applyForce(gravity);
+    this.update();
+    this.show();
+  }
+
+  applyForce(force) {
+    this.acceleration.add(force);
+  }
+
+  // Method to update position
+  update() {
+    this.velocity.add(this.acceleration);
+    this.position.add(this.velocity);
+    this.lifespan -= 2;
+    this.acceleration.mult(0);
+  }
+
+  // Method to display
+  show() {
+    stroke(0, this.lifespan);
+    strokeWeight(2);
+    fill(127, this.lifespan);
+    circle(this.position.x, this.position.y, 8);
+  }
+
+  isDead() {
+    return this.lifespan < 0.0;
+  }
+}
+
+```
+
+confetti
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+// Child class constructor
+class Confetti extends Particle {
+  // Override the show method
+  show() {
+    let angle = map(this.position.x, 0, width, 0, TWO_PI * 2);
+
+    rectMode(CENTER);
+    fill(127, this.lifespan);
+    stroke(0, this.lifespan);
+    strokeWeight(2);
+    push();
+    translate(this.position.x, this.position.y);
+    rotate(angle);
+    square(0, 0, 12);
+    pop();
+  }
+}
+
+```
+
+sketch
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+// Particles are generated each cycle through draw(),
+// fall with gravity and fade out over time
+// A ParticleSystem object manages a variable size
+// list of particles.
+
+
+let emitter;
+
+function setup() {
+  createCanvas(640, 240);
+  emitter = new Emitter(width / 2, 20);
+}
+
+function draw() {
+  background(255);
+  emitter.update();
+  emitter.showAnchor();
+  emitter.addParticle();
+  emitter.run();
+}
+```
+
+
+[Link al sketch](https://editor.p5js.org/luly903/full/TAlPIYPTJ)
+
+imagen: 
+
+<img width="701" height="263" alt="image" src="https://github.com/user-attachments/assets/2506b55f-29a1-421b-bbbd-757374b6c0d7" />
+
+
+*ejemplo 4.6: a Particle System with Forces.*: agregue una fuerza adicional a la de la gravedad (viento) en la funcion de draw, que hace parecer como si las particulas estuvieran siendo llevadas por el viento (unidad 3).
+
+codigo fuente:
+
+emitter
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+class Emitter {
+
+  constructor(x, y) {
+    this.origin = createVector(x, y);
+    this.particles = [];
+  }
+
+  addParticle() {
+    this.particles.push(new Particle(this.origin.x, this.origin.y));
+  }
+
+  applyForce(force) {
+    //{!3} Using a for of loop to apply the force to all particles
+    for (let particle of this.particles) {
+      particle.applyForce(force);
+    }
+  }
+
+  run() {
+    //{!7} Can’t use the enhanced loop because checking for particles to delete.
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      const particle = this.particles[i];
+      particle.run();
+      if (particle.isDead()) {
+        this.particles.splice(i, 1);
+      }
+    }
+  }
+}
+
+```
+
+particle
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+// Simple Particle System
+
+// A simple Particle class
+
+class Particle {
+  constructor(x, y) {
+    this.position = createVector(x, y);
+    this.acceleration = createVector(0, 0.0);
+    this.velocity = createVector(random(-1, 1), random(-2, 0));
+    this.lifespan = 255.0;
+    this.mass = 1; // Let's do something better here!
+  }
+
+  run() {
+    this.update();
+    this.show();
+  }
+
+  applyForce(force) {
+    let f = force.copy();
+    f.div(this.mass);
+    this.acceleration.add(f);
+  }
+
+  // Method to update position
+  update() {
+    this.velocity.add(this.acceleration);
+    this.position.add(this.velocity);
+    this.acceleration.mult(0);
+    this.lifespan -= 2.0;
+  }
+
+  // Method to display
+  show() {
+    stroke(0, this.lifespan);
+    strokeWeight(2);
+    fill(127, this.lifespan);
+    circle(this.position.x, this.position.y, 8);
+  }
+
+  // Is the particle still useful?
+  isDead() {
+    return this.lifespan < 0.0;
+  }
+}
+
+```
+
+sketch
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+let emitter;
+
+
+function setup() {
+  createCanvas(620, 480);
+  emitter = new Emitter(width / 10, 50);
+}
+
+function draw() {
+  background(255,30);
+  let wind = createVector(0.1,0);
+  emitter.applyForce(wind);
+  
+  // Apply gravity force to all Particles
+  let gravity = createVector(0, 0.1);
+  emitter.applyForce(gravity);
+
+  emitter.addParticle();
+  emitter.run();
+}
+```
+
+[link al sketch](https://editor.p5js.org/luly903/sketches/m4mDYCHsd)
+
+imagen: 
+
+<img width="664" height="533" alt="image" src="https://github.com/user-attachments/assets/29ce06c6-2baa-41d4-aa9c-886a59645761" />
+
+
+
+
+*4.7: a Particle System with a Repeller:* modifique la clase emitter y particle para que particle tuviera subclases de particulas con diferentes formas (triangulo, circulo y cuadrado) y colores que heredaran de ella y de esta forma el emitter generara 3 tipos de particulas diferentes (unidad 5).
+
+codigo fuente:
+
+emitter
+```js
+// The Emitter manages all the particles.
+class Emitter {
+
+  constructor(x, y) {
+    this.origin = createVector(x, y);
+    this.particles = [];
+  }
+
+  addParticle() {
+    // Elegir aleatoriamente el tipo de partícula
+    let r = floor(random(3));
+    let p;
+    if (r === 0) {
+      p = new CircleParticle(this.origin.x, this.origin.y);
+    } else if (r === 1) {
+      p = new SquareParticle(this.origin.x, this.origin.y);
+    } else {
+      p = new TriangleParticle(this.origin.x, this.origin.y);
+    }
+    this.particles.push(p);
+  }
+
+  applyForce(force) {
+    for (let particle of this.particles) {
+      particle.applyForce(force);
+    }
+  }
+
+  applyRepeller(repeller) {
+    for (let particle of this.particles) {
+      let force = repeller.repel(particle);
+      particle.applyForce(force);
+    }
+  }
+
+  run() {
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      const particle = this.particles[i];
+      particle.run();
+      if (particle.isDead()) {
+        this.particles.splice(i, 1);
+      }
+    }
+  }
+}
+
+```
+
+particle
+```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+// Clase base de Partícula
+class Particle {
+  constructor(x, y) {
+    this.position = createVector(x, y);
+    this.velocity = createVector(random(-1, 1), random(-1, 0));
+    this.acceleration = createVector(0, 0);
+    this.lifespan = 255.0;
+  }
+
+  run() {
+    this.update();
+    this.show();
+  }
+
+  applyForce(f) {
+    this.acceleration.add(f);
+  }
+
+  // Método para actualizar posición
+  update() {
+    this.velocity.add(this.acceleration);
+    this.position.add(this.velocity);
+    this.lifespan -= 2;
+    this.acceleration.mult(0);
+  }
+
+  // Método de display (sobrescrito en subclases)
+  show() {
+    // Clase abstracta → no dibuja nada aquí
+  }
+
+  isDead() {
+    return this.lifespan < 0.0;
+  }
+}
+
+// Partícula circular
+class CircleParticle extends Particle {
+  show() {
+    stroke(0, this.lifespan);
+    strokeWeight(2);
+    fill(127, this.lifespan);
+    circle(this.position.x, this.position.y, 8);
+  }
+}
+
+// Partícula cuadrada
+class SquareParticle extends Particle {
+  show() {
+    stroke(50, this.lifespan);
+    strokeWeight(2);
+    fill(200, 100, 100, this.lifespan);
+    rectMode(CENTER);
+    rect(this.position.x, this.position.y, 10, 10);
+  }
+}
+
+// Partícula triangular
+class TriangleParticle extends Particle {
+  show() {
+    stroke(100, this.lifespan);
+    strokeWeight(2);
+    fill(100, 200, 150, this.lifespan);
+    push();
+    translate(this.position.x, this.position.y);
+    beginShape();
+    vertex(-6, 6);
+    vertex(6, 6);
+    vertex(0, -6);
+    endShape(CLOSE);
+    pop();
+  }
+}
+
+```
+
+repeller
+```js
+class Repeller {
+  constructor(x, y) {
+    this.position = createVector(x, y);
+    //{!1} How strong is the repeller?
+    this.power = 200;
+  }
+
+  show() {
+    stroke(0);
+    strokeWeight(2);
+    fill(127);
+    circle(this.position.x, this.position.y, 32);
+  }
+
+  repel(particle) {
+    //{!6 .code-wide} This is the same repel algorithm we used in Chapter 2: forces based on gravitational attraction.
+    let force = p5.Vector.sub(this.position, particle.position);
+    let distance = force.mag();
+    distance = constrain(distance, 5, 50);
+    let strength = (-1 * this.power) / (distance * distance);
+    force.setMag(strength);
+    return force;
+  }
+}
+
+```
+
+sketch
+```js
+// One ParticleSystem
+let emitter;
+
+//{!1} One repeller
+let repeller;
+
+function setup() {
+  createCanvas(640 , 240);
+  emitter = new Emitter(width / 2, 60);
+  repeller = new Repeller(width / 2, 250);
+}
+
+function draw() {
+  background(255);
+  emitter.addParticle();
+  // We’re applying a universal gravity.
+  let gravity = createVector(0, 0.1);
+  emitter.applyForce(gravity);
+  //{!1} Applying the repeller
+  emitter.applyRepeller(repeller);
+  emitter.run();
+
+  repeller.show();
+}
+```
+
+[link al sketch](https://editor.p5js.org/luly903/full/FN3mse5Wo)
+
+imagen:<img width="707" height="264" alt="image" src="https://github.com/user-attachments/assets/903268a8-8961-4645-9046-895ccf4e5e12" />
+
+
+
+## Actividad 03
+
+**concepto:** una varita magica que tenga destellos saliendo de este y se pueda usar para dibujar en un canvas completamente negro usando el mouse como si la varita iluminara el vacio con dibujos y formas que el usuario cree, con la posibilidad de cmabiar de color cuando se oprima la tecla espacio y el canvas se limpie cuando se oprima la tecla SHIFT para iniciar de nuevo. El proposito es que el mismo usuario pueda crear su propia obra de arte de una forma divertida con un toque magico.
+
+**boceto inicial de la idea:**
+
+
+<img width="737" height="471" alt="image" src="https://github.com/user-attachments/assets/fdb09c6a-a8d6-4a7a-8866-11b1b96502f2" />
+
+
+**Codigo fuente**
+```js
+let particles = [];
+let strokes = [];
+let currentStroke = null;
+let currentColor;
+
+const MAX_STROKES = 100;   // máximo de trazos en memoria
+const MAX_PARTICLES = 200; // máximo de partículas en memoria
+
+function setup() {
+  createCanvas(800, 600);
+  background(20);
+  currentColor = color(random(255), random(255), random(255));
+}
+
+function draw() {
+  background(20, 40);
+
+  // Posición de la varita
+  let wandX = mouseX;
+  let wandY = mouseY;
+  let wandLength = 50;
+  let wandThickness = 8;
+
+  let angle = PI / 4; // fijo de 45°
+
+  // Dibuja la varita
+  push();
+  translate(wandX, wandY);
+  rotate(angle);
+  fill(255);
+  noStroke();
+  rectMode(CENTER);
+  rect(0, 0, wandLength, wandThickness, 4);
+  pop();
+
+  // Punta de la varita
+  let tipX = wandX + cos(angle) * -(wandLength / 2);
+  let tipY = wandY + sin(angle) * -(wandLength / 2);
+
+  // Crear un nuevo trazo si el mouse está presionado
+  if (mouseIsPressed) {
+    if (!currentStroke) {
+      currentStroke = new Stroke(currentColor);
+      strokes.push(currentStroke);
+
+      // Limitar cantidad de trazos
+      if (strokes.length > MAX_STROKES) {
+        strokes.shift();
+      }
+    }
+    currentStroke.addPoint(tipX, tipY);
+  } else {
+    currentStroke = null;
+  }
+
+  // Dibujar todos los trazos
+  for (let s of strokes) {
+    s.show();
+  }
+
+  // Emitir nueva partícula
+  let type = random() < 0.5 ? "circle" : "triangle";
+  particles.push(new Particle(tipX, tipY, currentColor, type));
+
+  // Limitar cantidad de partículas
+  if (particles.length > MAX_PARTICLES) {
+    particles.splice(0, particles.length - MAX_PARTICLES);
+  }
+
+  // Actualizar y mostrar partículas
+  for (let i = particles.length - 1; i >= 0; i--) {
+    particles[i].applyForce(createVector(0, 0.05));
+    particles[i].update();
+    particles[i].show();
+    if (particles[i].finished()) {
+      particles.splice(i, 1);
+    }
+  }
+}
+
+// ==== CLASES BASE ====
+
+class Drawable {
+  show() {}
+}
+
+// Stroke hereda de Drawable
+class Stroke extends Drawable {
+  constructor(c) {
+    super();
+    this.points = [];
+    this.c = c;
+  }
+
+  addPoint(x, y) {
+    this.points.push(createVector(x, y));
+  }
+
+  show() {
+    noFill();
+
+    strokeWeight(12);
+    stroke(red(this.c), green(this.c), blue(this.c), 40);
+    beginShape();
+    for (let pt of this.points) curveVertex(pt.x, pt.y);
+    endShape();
+
+    strokeWeight(8);
+    stroke(red(this.c), green(this.c), blue(this.c), 80);
+    beginShape();
+    for (let pt of this.points) curveVertex(pt.x, pt.y);
+    endShape();
+
+    strokeWeight(6);
+    stroke(red(this.c), green(this.c), blue(this.c), 200);
+    beginShape();
+    for (let pt of this.points) curveVertex(pt.x, pt.y);
+    endShape();
+  }
+}
+
+// Particle hereda de Drawable
+class Particle extends Drawable {
+  constructor(x, y, c, type) {
+    super();
+    this.pos = createVector(x, y);
+    this.vel = createVector(random(-1, 1), random(-2, -0.5));
+    this.acc = createVector(0, 0);
+    this.lifetime = 255;
+    this.size = random(4, 8);
+    this.c = c;
+    this.type = type; // "circle" o "triangle"
+  }
+
+  applyForce(force) {
+    this.acc.add(force);
+  }
+
+  update() {
+    this.vel.add(this.acc);
+    this.pos.add(this.vel);
+    this.acc.mult(0);
+    this.lifetime -= 3;
+  }
+
+  finished() {
+    return this.lifetime < 0;
+  }
+
+  show() {
+    noStroke();
+    for (let r = 20; r > 0; r -= 5) {
+      let alpha = map(r, 20, 0, 0, this.lifetime);
+      fill(red(this.c), green(this.c), blue(this.c), alpha / 3);
+      if (this.type === "circle") {
+        ellipse(this.pos.x, this.pos.y, this.size + r);
+      } else {
+        push();
+        translate(this.pos.x, this.pos.y);
+        rotate(frameCount * 0.05);
+        triangle(
+          0, -this.size - r,
+          -this.size - r, this.size + r,
+          this.size + r, this.size + r
+        );
+        pop();
+      }
+    }
+
+    fill(red(this.c), green(this.c), blue(this.c), this.lifetime);
+    if (this.type === "circle") {
+      ellipse(this.pos.x, this.pos.y, this.size);
+    } else {
+      push();
+      translate(this.pos.x, this.pos.y);
+      rotate(frameCount * 0.05);
+      triangle(
+        0, -this.size,
+        -this.size, this.size,
+        this.size, this.size
+      );
+      pop();
+    }
+  }
+}
+
+// ==== INPUTS ====
+
+function keyPressed() {
+  if (key === ' ') {
+    currentColor = color(random(255), random(255), random(255));
+  }
+  if (keyCode === SHIFT) {
+    strokes.length = 0;
+    particles.length = 0;
+  }
+}
+```
+
+imagenes de la obra:
+
+<img width="895" height="667" alt="image" src="https://github.com/user-attachments/assets/c3e6ca92-2d56-4f77-b8fc-a1ba586f9589" />
+
+<img width="900" height="676" alt="image" src="https://github.com/user-attachments/assets/752e6fdc-7db8-48c4-ad06-8c4c3f6bc16f" />
+
+
+<img width="896" height="680" alt="image" src="https://github.com/user-attachments/assets/c1827b26-da2e-4e88-bf1a-12c353797bd4" />
+
+
+
+## Rubrica
+
+**1. Investigación y Experimentación (Evidencia en Actividad 2): 3.5**
+   - justificacion: A pesar de que hice las modificaciones en los codigos y los analice para entender como funcionaban y como hacer las modificaciones implementando conceptos de cada unidad vista hasta ahora, No escribi un descripcion detallada de como funcionaba cada codigo individualmente, sino que me limite a escribir que tipo de modificacion hice al codigo y que provocara que hiciera, aunque si escribi al principio como todos los codigos gestionan las particulas en la memoria y su creacion y destruccion.
+  
+**2. Intención y Diseño (Proceso de Actividad 3): 5.0**
+  - justificacion: Explique el concepto de mi obra, su proposito y el producto final concuerda con lo planteado anteriormente, incluyendo la interaccion, comportamientos y estetica, aunque es posible que la descripcion no sea muy extensa o detallada, aun asi es puntual y cubre los criterios propuestos.
+
+**3. Aplicación Técnica (Código de Actividad 3): 3.8**
+  - justificacion: El codigo hace uso de clases modulares y herencias, lo que genera particulas con diferentes figuras (triangulo, circulo) y tamaños, ademas de gestionar la memoria al limitar la cantidad de particulas o destellos que pueden existir en el array y constantemente eliminar las particulas que ya hayan terminado su tiempo de vida. Aun asi, las herencias y polimorfismos podrian haber sido implementados de mejor forma para organizar y optimizar mejor el codigo.
+
+
+**4. Calidad de la Obra Final (Artefacto Entregado): 4.4**
+  - justificacion: La obra final es dinamica y permite que cada iteracion de la misma sea unica y diferente gracias a que deja que el usuario sea quien cree su propio arte a su gusto mientras usa la varita magica para traer "luz" en la oscuridad del canvas, con absoluta libertad de dibujar lo que desee. Aun asi, por algun motivo que no he podido descrifrar, hay momentos donde el framerate de la obra baja y se traba, y aunque estos momentos son breves y espontaneos y pasan muy poco, aun asi suceden y sin importar que tanto controle o cambie la gestion de particulas en la memoria, este problema aun sucede, por lo que no puedo decir que la obra no tiene defectos en su ejecucion.
+
+
+
+
