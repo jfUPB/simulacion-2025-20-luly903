@@ -16,3 +16,37 @@ Me gusta como las lineas blancas parecieran ser grietas que pasan por todo el li
 
 ### Actividad 02
 
+**1. ¿Qué es una fuerza de dirección (steering force)?**
+- 
+
+**2. ¿Qué diferencia tiene este tipo de fuerza con las que ya hemos estudiado en el contexto de la simulación de agentes?**
+-
+
+**3. ¿Qué relación tiene la steering force con Craig Reynolds y su trabajo en simulación de comportamiento animal?**
+-
+
+### Actividad 03
+
+**1. Explica brevemente la estructura de datos usada para el campo de flujo y cómo se generan sus vectores.**
+
+
+**2. Describe con tus palabras cómo un agente utiliza el campo para calcular su fuerza de dirección.**
+
+
+**3. Lista los parámetros clave identificados (resolución, maxspeed, maxforce).**
+
+
+**4. Describe la modificación que realizaste al código y explica detalladamente el efecto que tuvo en el movimiento y comportamiento colectivo de los agentes.** 
+
+
+**5. Incluye una captura de pantalla o GIF si ilustra bien el cambio. Muestra el fragmento de código modificado.**
+
+
+
+
+
+
+
+
+
+
