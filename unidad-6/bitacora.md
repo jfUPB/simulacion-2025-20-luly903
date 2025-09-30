@@ -49,13 +49,30 @@ maxforce: la magnitud máxima de la fuerza de dirección que puede aplicar el ag
 ### Actividad 04
 
 **1. Explica con tus palabras el objetivo y la lógica general de cálculo de cada una de las tres reglas de Flocking (Separación, Alineación, Cohesión).**
-- 
+- Separacion:
+    Objetivo: Evitar que los boids se choquen
+    logica: cada agente busca vecinos muy cercanos dentro de un radio pequeño; si los  encuentra, genera una fuerza que lo empuja en dirección contraria
+
+Alineacion:
+    Objetivo: Moverse en la misma direccion que otros boids cercanos
+    logica: calcula la velocidad promedio de los agentes dentro del radio de percepción y ajusta la suya para alinearse con esa dirección.
+
+Cohesion:
+    Objetivo: Evitar que los boids se separen mucho de los otros boids cercanos
+    logica: calcula el centro de masa de los vecinos cercanos y genera una fuerza que empuja al agente hacia ese punto, promoviendo la agrupación.
 
 **2. Lista los parámetros clave identificados (radio de percepción, pesos de las reglas, maxspeed, maxforce).**
-- 
+- Radio de percepción: define qué tan lejos ve un agente para considerar a otros como vecinos en cada regla. Puede variar según la regla (ej. separación suele tener un radio más pequeño).
+
+Pesos de las reglas: cada regla (separación, alineación, cohesión) tiene un factor de ponderación que ajusta su influencia relativa en el movimiento final.
+
+maxspeed: la velocidad máxima que un agente puede alcanzar.
+
+maxforce: la fuerza máxima de dirección que un agente puede aplicar al ajustar su movimiento.
 
 **3. Describe la modificación que realizaste al código y explica detalladamente el efecto que tuvo en el comportamiento colectivo del enjambre (¿Se dispersan? ¿Forman grupos compactos? ¿se mueven caóticamente?). Incluye una captura de pantalla o GIF si ilustra bien el cambio. Muestra el fragmento de código modificado.**
 - 
+
 
 
 
