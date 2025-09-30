@@ -34,7 +34,11 @@ Me gusta como las lineas blancas parecieran ser grietas que pasan por todo el li
 - El agente primero observa en que celda del campo se encuentra y el vector de direccion que contiene, despues lo multiplica por su velocidad maxima y calcula la steering force del agente restando el vector de la celda con el vector de velocidad del agente, ya por ultimo el resultado de esa resta (que se convierte en la steering force) que se le aplica al vector aceleracion del agente.
 
 **3. Lista los parámetros clave identificados (resolución, maxspeed, maxforce).**
-- 
+- resolution: define el tamaño de cada celda del campo de flujo, afectando la “grilla” de vectores.
+
+maxspeed: la velocidad máxima a la que el agente puede moverse.
+
+maxforce: la magnitud máxima de la fuerza de dirección que puede aplicar el agente en cada paso (para mantener un movimiento suave y realista).
 
 **4. Describe la modificación que realizaste al código y explica detalladamente el efecto que tuvo en el movimiento y comportamiento colectivo de los agentes.** 
 - 
@@ -52,6 +56,7 @@ Me gusta como las lineas blancas parecieran ser grietas que pasan por todo el li
 
 **3. Describe la modificación que realizaste al código y explica detalladamente el efecto que tuvo en el comportamiento colectivo del enjambre (¿Se dispersan? ¿Forman grupos compactos? ¿se mueven caóticamente?). Incluye una captura de pantalla o GIF si ilustra bien el cambio. Muestra el fragmento de código modificado.**
 - 
+
 
 
 
