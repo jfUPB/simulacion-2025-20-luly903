@@ -17,31 +17,41 @@ Me gusta como las lineas blancas parecieran ser grietas que pasan por todo el li
 ### Actividad 02
 
 **1. ¿Qué es una fuerza de dirección (steering force)?**
-- 
+- Es una fuerza artificial que guia un agente (ej. particula) hacia una direccion especifica, se puede usar para crear un trayecto especifico para realizar acciones como ir hacia un objetivo, evitar obstaculos, etc.
 
 **2. ¿Qué diferencia tiene este tipo de fuerza con las que ya hemos estudiado en el contexto de la simulación de agentes?**
--
+- La fuerza de direccion no aplica las leyes de la fisica de la vida real, sino mas bien es una construccion computacional diseñada para controlar el movimiento de agentes de forma mas "inteligente" y estructurada.
 
 **3. ¿Qué relación tiene la steering force con Craig Reynolds y su trabajo en simulación de comportamiento animal?**
--
+- Craig Reynold fue quien introdujo el concepto de steering behaviors en su trabajo de 1987 sobre los Boids, un modelo pionero para simular el comportamiento colectivo de bandadas de aves.
 
 ### Actividad 03
 
 **1. Explica brevemente la estructura de datos usada para el campo de flujo y cómo se generan sus vectores.**
-
+- El campo de flujo es una matriz bidimensional donde cada celda contiene un vector de direccion, la direccion de estos vectores se determina de forma  aleatoria usando el ruido de perlin para que las direcciones sigan un "flujo" y no varien de forma tan abrupta entre casillas.
 
 **2. Describe con tus palabras cómo un agente utiliza el campo para calcular su fuerza de dirección.**
-
+- El agente primero observa en que celda del campo se encuentra y el vector de direccion que contiene, despues lo multiplica por su velocidad maxima y calcula la steering force del agente restando el vector de la celda con el vector de velocidad del agente, ya por ultimo el resultado de esa resta (que se convierte en la steering force) que se le aplica al vector aceleracion del agente.
 
 **3. Lista los parámetros clave identificados (resolución, maxspeed, maxforce).**
-
+- 
 
 **4. Describe la modificación que realizaste al código y explica detalladamente el efecto que tuvo en el movimiento y comportamiento colectivo de los agentes.** 
-
+- 
 
 **5. Incluye una captura de pantalla o GIF si ilustra bien el cambio. Muestra el fragmento de código modificado.**
+- 
 
+### Actividad 04
 
+**1. Explica con tus palabras el objetivo y la lógica general de cálculo de cada una de las tres reglas de Flocking (Separación, Alineación, Cohesión).**
+- 
+
+**2. Lista los parámetros clave identificados (radio de percepción, pesos de las reglas, maxspeed, maxforce).**
+- 
+
+**3. Describe la modificación que realizaste al código y explica detalladamente el efecto que tuvo en el comportamiento colectivo del enjambre (¿Se dispersan? ¿Forman grupos compactos? ¿se mueven caóticamente?). Incluye una captura de pantalla o GIF si ilustra bien el cambio. Muestra el fragmento de código modificado.**
+- 
 
 
 
