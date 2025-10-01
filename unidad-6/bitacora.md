@@ -128,11 +128,44 @@ maxspeed: la velocidad máxima que un boid puede alcanzar.
 maxforce: la fuerza máxima de dirección que un boid puede aplicar al ajustar su movimiento.
 
 **3. Describe la modificación que realizaste al código y explica detalladamente el efecto que tuvo en el comportamiento colectivo del enjambre (¿Se dispersan? ¿Forman grupos compactos? ¿se mueven caóticamente?). Incluye una captura de pantalla o GIF si ilustra bien el cambio. Muestra el fragmento de código modificado.**
-- 
+- Modifique drasticamente el peso de las 3 reglas (cohesion, separacion, alineacion). Disminui cohesion y separacion a 0.5 y aumente alineacion a 5.0, como resultado el enjambre ahora todos siguen una misma direccion en grupos muy juntos.
+
+codigo modificado
+
+  boid
+  ```
+ // We accumulate a new acceleration each time based on three rules
+  flock(boids) {
+    let sep = this.separate(boids); // Separation
+    let ali = this.align(boids); // Alignment
+    let coh = this.cohere(boids); // Cohesion
+    // Arbitrarily weight these forces
+    sep.mult(0.5);
+    ali.mult(5.0);
+    coh.mult(0.5);
+    // Add the force vectors to acceleration
+    this.applyForce(sep);
+    this.applyForce(ali);
+    this.applyForce(coh);
+  }
+  ```
+
+- <img width="718" height="287" alt="image" src="https://github.com/user-attachments/assets/4f692d89-9d5c-4f33-856a-237ea67d06df" />
 
 
+## APPLY
+
+### Actividad 05
+
+**Proceso de diseño:**
 
 
+**codigo fuente:**
+
+
+**[Enlace]()**
+
+**Imagen:**
 
 
 
