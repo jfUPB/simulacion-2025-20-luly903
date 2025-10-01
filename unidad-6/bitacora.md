@@ -140,3 +140,4 @@ maxforce: la fuerza máxima de dirección que un boid puede aplicar al ajustar s
 
 
 
+
