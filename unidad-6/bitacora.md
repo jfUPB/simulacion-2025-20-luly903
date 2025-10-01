@@ -23,7 +23,7 @@ Me gusta como las lineas blancas parecieran ser grietas que pasan por todo el li
 - La fuerza de direccion no aplica las leyes de la fisica de la vida real, sino mas bien es una construccion computacional diseñada para controlar el movimiento de agentes de forma mas "inteligente" y estructurada.
 
 **3. ¿Qué relación tiene la steering force con Craig Reynolds y su trabajo en simulación de comportamiento animal?**
-- Craig Reynold fue quien introdujo el concepto de steering behaviors en su trabajo de 1987 sobre los Boids, un modelo pionero para simular el comportamiento colectivo de bandadas de aves.
+- Craig Reynold fue quien introdujo el concepto de steering behaviors en su trabajo de 1987 sobre flocking.
 
 ### Actividad 03
 
@@ -41,10 +41,67 @@ maxspeed: la velocidad máxima a la que el agente puede moverse.
 maxforce: la magnitud máxima de la fuerza de dirección que puede aplicar el agente en cada paso (para mantener un movimiento suave y realista).
 
 **4. Describe la modificación que realizaste al código y explica detalladamente el efecto que tuvo en el movimiento y comportamiento colectivo de los agentes.** 
-- 
+- En la clase flowfield modifique los valores de cols y rows para que las celdas fueran muchos mas anchas y delgadas, ademas de modificar el ruido de perlin, que contenia un random normal, a valores fijos. Estas modificaciones provocaron que el flowfield ya no tenga "caminos" o "corrientes" fluidas, variadas y que dan una sensacion de curva, sino que ahora todas las celdas apuntan hacia la misma direccion que se genere, por lo que ahora los agentes siguen una misma direccion.
+- como un extra, hice que los boids ahora tengan colores aleatorios cambiando el valor fijo del fill por 3 radom() que dieran valores rgb diferentes aleatorios.
+
 
 **5. Incluye una captura de pantalla o GIF si ilustra bien el cambio. Muestra el fragmento de código modificado.**
-- 
+- fragmentos del codigo modificado:
+  vehicle
+    ```js
+    show() {
+    // Draw a triangle rotated in the direction of velocity
+    let theta = this.velocity.heading();
+    fill(random(255),random(255),random(255));
+    stroke(0);
+    strokeWeight(1);
+    push();
+    translate(this.position.x, this.position.y);
+    rotate(theta);
+    beginShape();
+    vertex(this.r * 2, 0);
+    vertex(-this.r * 2, -this.r);
+    vertex(-this.r * 2, this.r);
+    endShape(CLOSE);
+    pop();
+    }
+    ```
+  flowfield
+    ```js
+    class FlowField {
+  constructor(r) {
+    this.resolution = r;
+    //{!2} Determine the number of columns and rows.
+    this.cols = 100 / this.resolution;
+    this.rows = 600 / this.resolution;
+    //{!4} A flow field is a two-dimensional array of vectors. The example includes as         separate function to create that array
+    this.field = new Array(this.cols);
+    for (let i = 0; i < this.cols; i++) {
+      this.field[i] = new Array(this.rows);
+    }
+    this.init();
+     }
+    
+    
+      init() {
+    // Reseed noise for a new flow field each time
+    noiseSeed(random(10000));
+    let xoff = 0;
+    for (let i = 0; i < this.cols; i++) {
+      let yoff = 0;
+      for (let j = 0; j < this.rows; j++) {
+        //{.code-wide} In this example, use Perlin noise to create the vectors.
+        let angle = map(noise(0, 200), 0, 1, 0, TWO_PI);
+        this.field[i][j] = p5.Vector.fromAngle(angle);
+        yoff += 0.1;
+      }
+      xoff += 0.1;
+    }
+  }
+    ```
+  
+- <img width="713" height="282" alt="image" src="https://github.com/user-attachments/assets/28e48b2e-6a5a-45a8-b922-ae6b91cdd64f" />
+
 
 ### Actividad 04
 
@@ -64,14 +121,15 @@ Cohesion:
 **2. Lista los parámetros clave identificados (radio de percepción, pesos de las reglas, maxspeed, maxforce).**
 - Radio de percepción: define qué tan lejos ve un agente para considerar a otros como vecinos en cada regla. Puede variar según la regla (ej. separación suele tener un radio más pequeño).
 
-Pesos de las reglas: cada regla (separación, alineación, cohesión) tiene un factor de ponderación que ajusta su influencia relativa en el movimiento final.
+Pesos de las reglas: cada regla (separación, alineación, cohesión) tiene un "peso" que ajusta su influencia en el movimiento final.
 
-maxspeed: la velocidad máxima que un agente puede alcanzar.
+maxspeed: la velocidad máxima que un boid puede alcanzar.
 
-maxforce: la fuerza máxima de dirección que un agente puede aplicar al ajustar su movimiento.
+maxforce: la fuerza máxima de dirección que un boid puede aplicar al ajustar su movimiento.
 
 **3. Describe la modificación que realizaste al código y explica detalladamente el efecto que tuvo en el comportamiento colectivo del enjambre (¿Se dispersan? ¿Forman grupos compactos? ¿se mueven caóticamente?). Incluye una captura de pantalla o GIF si ilustra bien el cambio. Muestra el fragmento de código modificado.**
 - 
+
 
 
 
