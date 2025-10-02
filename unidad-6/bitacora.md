@@ -407,10 +407,11 @@ class Boid {
 <img width="798" height="662" alt="image" src="https://github.com/user-attachments/assets/50602ae5-8c81-4bec-9c29-a4c1865a3a55" />
 
 
+### AUTOEVALUACION
 
+nota propuesta: 5
 
-
-
+justificacion: realice las 5 actividades como fue instruido lo mejor que pude, lo que no entendia busque aprender y siento que logre aprender de las actividades en esta unidad.
 
 
 
