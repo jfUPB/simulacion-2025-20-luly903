@@ -157,7 +157,7 @@ codigo modificado
 
 ### Actividad 05
 
-**Proceso de diseño:** Para esta obra se me ocurrio jugar con el bass o frecuencias bajas de las canciones y como podrian infuenciar el comportamiento de un flock que siga el mouse todo el tiempo. En esta caso, quise hacer como si la potencia del bass provocara que los boids se dispersaran 
+**Proceso de diseño:** Para esta obra se me ocurrio jugar con el bass o frecuencias bajas de las canciones y como podrian infuenciar el comportamiento de un flock que siga el mouse todo el tiempo. En esta caso, quise hacer como si la potencia del bass provocara que los boids se dispersaran como si un terremoto los hiciera separarse.
 
 
 **codigo fuente:**
@@ -166,6 +166,7 @@ codigo modificado
 **[Enlace]()**
 
 **Imagen:**
+
 
 
 
