@@ -3,6 +3,9 @@
 ## SET
 
 ### Actividad 01
+
+**1.**
+
 <img width="477" height="480" alt="image" src="https://github.com/user-attachments/assets/404b0c2e-7711-482e-9f3e-7b7dc4d32bf4" />
 
 - en esta imagen las letras que conforman la palabra "gravity" caen al piso como si esta estuvieran siendo afectadas por la gravedad misma en lugar de estar simplemente estaticas en la pantalla.
@@ -15,10 +18,13 @@
 
 - En esta imagen la segunda o de "moon" no solo es mas pequeña que la primera, sino que tambien esta ubicada un poco mas arriba de la primera "o", esto acompañadado con el fondo negro y las letras blancas, hacen parecer que la segunda "o" es una luna orbitando la primera "o" como si fuera un planeta.
 
-- 
+**2.**
 
+- para la palabra "movie" giraria la "v" para que parezca que esta proyectando algo y voltearia la "para que parezca una siila y poner la "i" ahi, de esta forma dar la ilusion de que alguien esta viendo una pelicula en un proyector.
 
+- para la palabra "kite" haria que la "t" estuviera mas arriba y hacia la derecha y la giraria de tal moodo que pueda parecerse a una cometa, angularia la "k" para que parezca una silla y curvearia la "i" para que parezca una persona, de esta forma haciendo parecer que alguen esta volando una cometa.
 
+- en la palabra "Alligator" ajustaria la "A" y la "r" para qu parezcan la boca y cola de un caiman.
 
 
 ## SEEK
@@ -29,6 +35,7 @@
 ## APPLY
 
 ### Actividad 03
+
 
 
 
