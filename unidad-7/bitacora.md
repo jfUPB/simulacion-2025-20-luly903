@@ -341,7 +341,7 @@ function drawVertices(vertices) {
 **MouseaConstrain:** constrain temporal entre un objeto y el mouse.
 
 **dificultades:**
-entender la documentacion escrita de matter.js, lo que mas me sirvio fue ir al canal de patt vira y ver sus otros ejercicios con matter.js, ya que la bilbioteca de ejemplos estan desactualizados o no funcionan, y la documentacion fue un poco confusa de entender. No pude crear el mouse constrain por mi cuenta por lo que chatgpt me tuvo que ayudar en cuanto la interaccion mouse-world en los experimentos 1 y 2.
+entender la documentacion escrita de matter.js, lo que mas me sirvio fue ir al canal de patt vira y ver sus otros ejercicios con matter.js, ya que la bilbioteca de ejemplos estan desactualizados o no funcionan, y la documentacion fue un poco confusa de entender. No pude crear el mouse constrain por mi cuenta por lo que chatgpt me tuvo que ayudar en cuanto la interaccion mouse-world en el experimento 2.
 
 ## APPLY
 
@@ -356,3 +356,4 @@ entender la documentacion escrita de matter.js, lo que mas me sirvio fue ir al c
 **nota propuesta:** 4
 
 **justificacion:** realice 2 de las 3 actividades propuestas lo mejor que pude.
+
