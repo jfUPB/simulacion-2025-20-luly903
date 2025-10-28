@@ -28,11 +28,20 @@
 
 ### Actividad 02
 
+**pieza musical elegida**
 
+**descripción del concepto visual.**
+
+**inputs seleccionados y la justificación de por qué los elegiste.**
+
+**¿Qué algoritmos o técnicas planeas usar (ej: flow fields, flocking, física, partículas, etc.) y por qué?**
+
+**Tus bocetos y una explicación de cómo los inputs influirán en los visuales.**
 
 ## APPLY
 
 ### Actividad 03
+
 
 
 
