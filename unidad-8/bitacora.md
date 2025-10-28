@@ -29,18 +29,22 @@
 ### Actividad 02
 
 **pieza musical elegida**
+Lindsey Stirling - Shatter me
 
 **descripción del concepto visual.**
+el concepto visual consisitira en un conjunto de lineas horizontales que simularan las cuerdas de un violin, estas se curvearan y generaran particulas a partir de la intensidad de la frecuencia de las ondas, algunas cuerdas se veran afectadas por las frecuencias altas y otros por frecuencias bajas, las cuerdas van a dejar un "rastro" o eco cuando se muevan, el fondo sera completamente negro las cuerdas seran blancas, y las partiuclas seran de un mismo color que ira cambiando con el tiempo.
 
 **inputs seleccionados y la justificación de por qué los elegiste.**
 
 **¿Qué algoritmos o técnicas planeas usar (ej: flow fields, flocking, física, partículas, etc.) y por qué?**
+- planeo usar particulas y la biblioteca de matter.js para realizar la actividad, esto para
 
 **Tus bocetos y una explicación de cómo los inputs influirán en los visuales.**
 
 ## APPLY
 
 ### Actividad 03
+
 
 
 
