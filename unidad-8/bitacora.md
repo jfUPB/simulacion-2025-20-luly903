@@ -37,13 +37,18 @@ el concepto visual consisitira en un conjunto de lineas horizontales que simular
 **inputs seleccionados y la justificación de por qué los elegiste.**
 
 **¿Qué algoritmos o técnicas planeas usar (ej: flow fields, flocking, física, partículas, etc.) y por qué?**
-- planeo usar particulas y la biblioteca de matter.js para realizar la actividad, esto para
+- planeo usar particulas y la biblioteca de matter.js para realizar la actividad, esto ya que estoy familiarizada con con estas tecnicas lo cual hara mas facil realizar la obra.
 
 **Tus bocetos y una explicación de cómo los inputs influirán en los visuales.**
+![Imagen de WhatsApp 2025-10-29 a las 22 38 27_1492aaea](https://github.com/user-attachments/assets/5a241c67-c41f-47df-a532-14be4531283e)
+
+como se describe en la imagen, las cuerdas se presentaran en un fondo oscuro, ellas seran influenciadas por los inputs de sonido de la cancion, las cuerdas superiores recibiran las frecuencias agudas mientras que las inferiores las frecuencias mas graves. Inicialmente, solo seran las cuerdas y el fondo negro, pero una vez las cuerdas se ven afectadas por el sonido, esta se moveran como si estuvieran "vibrando" y hubieran sido afectadas por una fuerza superior, al mismo tiempo, particulas saldran de las cuerdas como si fueran producto de las vibraciones, entre mas fuerte o mas potencia tenga el sonido y la frecuencia, mas se agitaran las cuerdas y mas particulas saldran de ellas, las particulas seran de colores aleatorios de tonos claros y/o neon.
+
 
 ## APPLY
 
 ### Actividad 03
+
 
 
 
