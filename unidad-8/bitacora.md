@@ -29,7 +29,7 @@
 ### Actividad 02
 
 **pieza musical elegida**
-Lindsey Stirling - Shatter me
+The other side of paradise - Glass Animals
 
 **descripción del concepto visual.**
 el concepto visual consisitira en un conjunto de lineas horizontales que simularan las cuerdas de un violin, estas se curvearan y generaran particulas a partir de la intensidad de la frecuencia de las ondas, algunas cuerdas se veran afectadas por las frecuencias altas y otros por frecuencias bajas, las cuerdas van a dejar un "rastro" o eco cuando se muevan, el fondo sera completamente negro las cuerdas seran blancas, y las partiuclas seran de un mismo color que ira cambiando con el tiempo.
@@ -48,6 +48,7 @@ como se describe en la imagen, las cuerdas se presentaran en un fondo oscuro, el
 ## APPLY
 
 ### Actividad 03
+
 
 
 
